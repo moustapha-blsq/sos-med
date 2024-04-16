@@ -1,0 +1,214 @@
+{%extends 'main.html'%}
+{%load static%}
+
+{%block content%}
+{% include 'base/header.html' %}
+ <!-- Begin Page Content -->
+ <div class="container-fluid">
+  <div align="right">
+      <a href="/" class="btn btn-primary btn-icon-split">
+          <span class="icon text-white-50">
+              <i class="fas fa-list"></i>
+          </span>
+          <span class="text">Liste patients</span>
+      </a>
+</div>
+<br/>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Dossier patient</h6>
+        <hr/>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <font size="2px">Prénom:</font><br>
+                            <b>{{patient.prenom}}</b>
+                        </div>
+                        <div class="col-md-2">
+                            <font size="2px">Nom:</font><br>
+                            <b>{{patient.nom}}</b>
+                        </div>
+
+                        <div class="col-md-1">
+                            <font size="2px">Age:</font><br>
+                            <b>{{patient.age}} ans</b>
+                        </div>
+
+                        <div class="col-md-2">
+                            <font size="2px">Numéro de téléphone:</font><br>
+                            <b>{{patient.telephone}}</b>
+                        </div>
+
+                        <div class="col-md-2">
+                            <font size="2px">Pays d'origine:</font><br>
+                            <b>{{patient.pays_origine}}</b>
+                        </div>
+
+                        <div class="col-md-3">
+                            <font size="2px">Date d'enregistrement:</font><br>
+                            <b>{{patient.date_creation}}</b>
+                        </div>
+                    </div>
+       <!-- <table class="table">
+            <tr>
+                <td>Prénom: <b>{{patient.prenom}}</b></td>
+                <td>Nom: <b>{{patient.nom}}</b></td>
+                <td>Age: <b>{{patient.age}} ans</b></td>
+                <td>Adresse: <b>{{patient.adresse}}</b></td>
+                <td>Tel: <b>{{patient.telephone}}</b></td>
+            </tr>
+        </table>-->
+    </div>
+    <div class="card-body">
+        
+        <div class="row">
+            
+            <div class="col-md-3 well">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-default">DETAILS CONSULTATION</h6>
+                    
+                </div>
+                    <div class="card-body">
+                        <font size="2px">Ambulancier:</font><br>
+                        <b>{{patient.ambulancier}}</b><br><br>
+                        <font size="2px">Motif de l'appel:</font><br>
+                        <b>{{patient.motif_appel}}</b><br><br>
+                        <font size="2px">Lieu d'intervention</font><br>
+                        <b>{{patient.lieu_intervention}}</b><br><br>
+                        <font size="2px">Diagnostique évoqué:</font><br>
+                        <b>{{patient.diagnostique_evoque}}</b><br><br>
+                        <font size="2px">Décision</font><br>
+                        <b>{{patient.decision}}</b><br><br>
+                        <font size="2px">Tranjet:</font><br>
+                        <b>{{patient.trajet}}</b><br><br>
+                        <font size="2px">Numéro ambulance:</font><br>
+                        <b>{{patient.numero_ambulance}}</b><br><br>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-default">INFOS PATIENT</h6>
+                </div>
+                    <div class="card-body">
+                        <!-- Button trigger modal -->
+                        <div class="alert alert-info"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+   <i class="fas fa-plus"></i><b> Horaires</b>
+  </button></div>
+  <table class="table">
+    <tr>
+        <th>#</th>
+        <th>HT</th>
+        <th>D. base</th>
+        <th>A. lieu</th>
+        <th>D. lieu</th>
+        <th>A.S.R</th>
+        <th>D.S.R</th>
+        <th>A. base</th>
+        <th>Durée</th>
+        <th>Action</th>
+    </tr>
+    {% for horaire in horaires %}
+    <tr>
+        <td>#</td>
+        <td>{{horaire.ht}}</td>
+        <td>{{horaire.d_base}}</td>
+        <td>{{horaire.a_lieu}}</td>
+        <td>{{horaire.d_lieu}}</td>
+        <td>{{horaire.asr}}</td>
+        <td>{{horaire.dsr}}</td>
+        <td>{{horaire.a_base}}</td>
+        <td>{{horaire.duree}}</td>
+        <td> 
+        <a href="/archive/{{horaire.id}}" class="btn btn-danger btn-circle btn-sm" title="Archiver">
+            <i class="fas fa-archive"></i>
+        </a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Saisie Horaires</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/save_horaire">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">HT</label>
+                    <input type="text" class="form-control" name="ht" id="inputEmail4"
+                        placeholder="au format __h__">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">D. base</label>
+                    <input type="text" name="d_base" class="form-control" id="inputPassword4"
+                        placeholder="au format __h__">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">A. lieu</label>
+                    <input type="text" class="form-control" name="a_lieu" id="inputEmail4"
+                        placeholder="au format __h__">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">D. lieu</label>
+                    <input type="text" name="d_lieu" class="form-control" id="inputPassword4"
+                        placeholder="au format __h__">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">A.S.R</label>
+                    <input type="text" class="form-control" name="asr" id="inputEmail4"
+                        placeholder="au format __h__">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">D.S.R</label>
+                    <input type="text" name="dsr" class="form-control" id="inputPassword4"
+                        placeholder="au format __h__">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">A. base</label>
+                    <input type="text" class="form-control" name="a_base" id="inputEmail4"
+                        placeholder="au format __h__">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Durée</label>
+                    <input type="text" name="duree" class="form-control" id="inputPassword4"
+                        placeholder="La durée">
+                 <input type="hidden" name="patient" class="form-control" id="inputPassword4"
+                        value="{{patient.id}}">
+                </div>
+            </div>
+           
+
+          
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <input type="submit" class="btn btn-primary" value="Enregister"/>
+        </div>
+    </form>
+</div>
+      </div>
+    </div>
+  </div> 
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+
+{% include 'base/footer.html' %}
+
+{%endblock%}
+
+ 
