@@ -92,8 +92,8 @@
                     <div class="card-body">
                         <!-- Button trigger modal -->
                         <div class="alert alert-info"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-   <i class="fas fa-plus"></i><b> Horaires</b>
-  </button></div>
+   <i class="fas fa-plus"></i>
+  </button><b> Horaires</b></div>
   <table class="table">
     <tr>
         <th>#</th>
@@ -125,8 +125,84 @@
     </tr>
     {% endfor %}
   </table>
+
+  <!--Lesion-->
+  <div class="alert alert-info"><button type="button" 
+    class="btn btn-primary" data-toggle="modal"
+    data-target="#exampleModal2">
+    <i class="fas fa-plus"></i>
+   </button><b> Lesion</b></div>
+   
+   <table class="table">
+    <tr>
+        <th>Lésions</th>
+        <th>Crane</th>
+        <th>Face</th>
+        <th>Cou</th>
+        <th>Rachis</th>
+        <th>Thorax</th>
+        <th>Abdomen</th>
+        <th>Bassin</th>
+        <th>MSD</th>
+        <th>MSG</th>
+        <th>MID</th>
+        <th>MIG</th>
+        <th>Action</th>
+    </tr>
+    {% for les in list_lesion %}
+    <tr>
+        <td>{{les.denomination}}</td>
+        <td>{{les.crane}}</td>
+        <td>{{les.face}}</td>
+        <td>{{les.cou}}</td>
+        <td>{{les.rachis}}</td>
+        <td>{{les.thorax}}</td>
+        <td>{{les.abdomen}}</td>
+        <td>{{les.bassin}}</td>
+        <td>{{les.msd}}</td>
+        <td>{{les.msg}}</td>
+        <td>{{les.mid}}</td>
+        <td>{{les.mig}}</td>
+        <td><a href="/archive/{{les.id}}" class="btn btn-danger btn-circle btn-sm" title="Archiver">
+            <i class="fas fa-archive"></i></td>
+    </tr>
+    {% endfor%}
+   </table>
+
+  <!--End lesion-->
+
+  <!--Lesion-->
+  <div class="alert alert-info">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ouvertureYeux">
+    <i class="fas fa-plus"></i>
+   </button>
+   <b> Ouverture des yeux </b>
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseVerbale">
+    <i class="fas fa-plus"></i>
+   </button>
+   <b> Réponse verbale </b>
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseMotrice">
+    <i class="fas fa-plus"></i>
+   </button>
+   <b> Réponse motrice </b>
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#autreSigne">
+    <i class="fas fa-plus"></i>
+   </button>
+   <b> Autres signes </b>
+</div>
+   
+   <table class="table">
+    <tr>
+        
+    </tr>
+    <tr>
+        
+    </tr>
+   </table>
+
+  <!--End lesion-->
   
-  <!-- Modal -->
+  <!-- Modal horaire-->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -200,6 +276,170 @@
       </div>
     </div>
   </div> 
+
+  <!--end modal horaires-->
+
+  <!--Modal ouverture yeux-->
+
+  
+  <div class="modal fade" id="ouvertureYeux" tabindex="-1" role="dialog" aria-labelledby="ouvertureYeux" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ouverture des yeux</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="/save_ouverture_yeux">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <select class="custom-select mr-sm-2"
+                         id="inlineFormCustomSelect" 
+                         name="nom_lesion">
+                         <option>- - - Sélectionnez - - -</option>
+                         <option value="Spontanee">Spontanée</option>
+                         <option value="Au bruit">Au bruit</option>
+                         <option value="A la douleur">A la douleur</option>
+                         <option value="Nulle">Nulle</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="number" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="score" min="0"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary">Enregister</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End modal ouverture yeux-->
+    <!-- Modal lesion-->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Saisie lesion</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/save_lesion">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <select class="custom-select mr-sm-2"
+                         id="inlineFormCustomSelect" 
+                         name="nom_lesion">
+                         <option>- - - Sélectionnez - - -</option>
+                         <option value="Traumatisme">Traumatisme</option>
+                         <option value="Plaie">Plaie</option>
+                         <option value="Hémorragie">Hémorragie</option>
+                         <option value="Ex ferme">Ex ferme</option>
+                         <option value="Fx ouverte">Fx ouverte</option>
+                         <option value="Brulure">Brûlure</option>
+                         <option value="Douleur">Douleur</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Crane</label>
+                        <input type="text" 
+                        class="form-control" name="crane" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Face</label>
+                        <input type="text" 
+                        class="form-control" name="face" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Cou</label>
+                        <input type="text" 
+                        class="form-control" name="cou" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Rachis</label>
+                        <input type="text" 
+                        class="form-control" name="rachis" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Thorax</label>
+                        <input type="text" 
+                        class="form-control" name="thorax" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Abdomen</label>
+                        <input type="text" 
+                        class="form-control" name="abdomen" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Bassin</label>
+                        <input type="text" 
+                        class="form-control" name="bassin" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">MSD</label>
+                        <input type="text" 
+                        class="form-control" name="msd" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">MSG</label>
+                        <input type="text" 
+                        class="form-control" name="msg" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">MID</label>
+                        <input type="text" 
+                        class="form-control" name="mid" id="inputEmail4"
+                            placeholder="">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">MIG</label>
+                        <input type="text" 
+                        class="form-control" name="mig" id="inputEmail4"
+                            placeholder="">
+                        <input type="hidden" name="patient" class="form-control" id="inputPassword4"
+                        value="{{patient.id}}">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputEmail4">Autre remarque</label>
+                        <textarea name="autre" class="form-control" id="inputEmail4"
+                            placeholder=""></textarea>
+                    </div>
+                </div>
+               
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <input type="submit" class="btn btn-primary" value="Enregister"/>
+            </div>
+        </form>
+    </div>
+          </div>
+        </div>
+      </div> 
+    
+      <!--end modal lesion-->
+    
+
                 </div>
             </div>
         

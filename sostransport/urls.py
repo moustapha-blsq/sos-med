@@ -23,5 +23,7 @@ urlpatterns = [
     path('new_patient/', add_patient, name='home'),
     path('save_patient', save),
     path('dossier_patient/<id>/', dossier_patient),
-    path('save_horaire', save_horaire)
+    path('save_horaire', save_horaire),
+    path('save_lesion', save_lesion),
+    path('save_ouverture_yeux', save_ouverture_yeux)
 ]

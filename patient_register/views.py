@@ -46,7 +46,8 @@ def save(request):
 def dossier_patient(request, id):
     patient = Patient.objects.get(pk=id)
     horaire_data = Horaires.objects.filter(patient=id)
-    context = {'patient': patient, 'horaires': horaire_data}
+    lesion = lesions.objects.filter(patient=id)
+    context = {'patient': patient, 'horaires': horaire_data, 'list_lesion': lesion}
     return render(request, 'dossier.html', context)
 
 def save_horaire(request):
@@ -71,9 +72,53 @@ def save_horaire(request):
             duree = duree,
             patient = my_patient
         )
+        lesion = lesions.objects.filter(patient=request.POST['patient'])
         horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-        context = {'patient': my_patient, 'horaires' : horaire_data}
+        context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion}
         return render(request, 'dossier.html', context)
         
+def save_lesion(request):
+    if request.method == 'POST':
+        my_patient = Patient.objects.get(pk=request.POST['patient'])
+        denomination  = request.POST['nom_lesion'],
+        #partie_lesion = request.POST[''],
+        crane         = request.POST['crane']
+        face          = request.POST['face']
+        cou           = request.POST['cou'],
+        rachis        = request.POST['rachis']
+        thorax        = request.POST['thorax']
+        abdomen       = request.POST['abdomen']
+        bassin        = request.POST['bassin']
+        msd           = request.POST['msd']
+        msg           = request.POST['msg']
+        mid           = request.POST['mid']
+        mig           = request.POST['mig']
+        autre         = request.POST['autre']
+        #patient       = my_patient
+        lesions.objects.create(
+            denomination  = denomination,
+            #partie_lesion = request.POST[''],
+            crane         = crane,
+            face          = face,
+            cou           = cou,
+            rachis        = rachis,
+            thorax        = thorax,
+            abdomen       = abdomen,
+            bassin        = bassin,
+            msd           = msd,
+            msg           = msg,
+            mid           = mid,
+            mig           = mig,
+            autre         = autre,
+            patient       = my_patient
+        )
+        lesion = lesions.objects.filter(patient=request.POST['patient'])
+        horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
+        context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion}
+        return render(request, 'dossier.html', context)
+    
+def save_ouverture_yeux(request):
+    pass    
 
+        
 

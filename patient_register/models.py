@@ -69,11 +69,21 @@ class Horaires(models.Model):
         db_table = 'Horaires'
 
 class lesions(models.Model):
-    denomination = models.CharField(max_length=50)
-    partie_lesion = models.CharField(max_length=25)
-    detail_lesion = models.CharField(max_length=50)
-    autre = models.CharField(max_length=150)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    denomination  = models.CharField(max_length=50, null=True)
+    partie_lesion = models.CharField(max_length=25, null=True)
+    crane         = models.CharField(max_length=50, null=True)
+    face          = models.CharField(max_length=50, null=True)
+    cou           = models.CharField(max_length=50, null=True)
+    rachis        = models.CharField(max_length=50, null=True)
+    thorax        = models.CharField(max_length=50, null=True)
+    abdomen       = models.CharField(max_length=50, null=True)
+    bassin        = models.CharField(max_length=50, null=True)
+    msd           = models.CharField(max_length=50, null=True)
+    msg           = models.CharField(max_length=50, null=True)
+    mid           = models.CharField(max_length=50, null=True)
+    mig           = models.CharField(max_length=50, null=True)
+    autre         = models.CharField(max_length=150)
+    patient       = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
     class Meta:
         db_table = 'Lesions'
 
@@ -114,4 +124,35 @@ class autre_signe_de_vie(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
     class Meta:
         db_table = 'autre_signe_vie'
+
+class Ouverture_des_yeux(models.Model):
+    libelle = models.CharField(max_length=25)
+    score   = models.IntegerField
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'ouverture_yeux'
+
+class Reponses_verbale(models.Model):
+    libelle = models.CharField(max_length=25)
+    score   = models.IntegerField
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'reponse_verbale'
+
+class Reponses_motrice(models.Model):
+    libelle = models.CharField(max_length=25)
+    score   = models.IntegerField
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'reponse_motrice'
+
+class Autres_signe_vie(models.Model):
+    libelle = models.CharField(max_length=25)
+    reponse = models.CharField(max_length=5)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'autres_signe_vie'
+
+
+
 
