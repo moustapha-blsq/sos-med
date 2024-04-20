@@ -47,7 +47,12 @@ def dossier_patient(request, id):
     patient = Patient.objects.get(pk=id)
     horaire_data = Horaires.objects.filter(patient=id)
     lesion = lesions.objects.filter(patient=id)
-    context = {'patient': patient, 'horaires': horaire_data, 'list_lesion': lesion}
+    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=id)
+    rep_verbale = Reponses_verbale.objects.filter(patient=id)
+    horaire_data = Horaires.objects.filter(patient=id)
+    rep_motrice = Reponses_motrice.objects.filter(patient=id)
+    context = {'patient': patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
     return render(request, 'dossier.html', context)
 
 def save_horaire(request):
@@ -72,10 +77,14 @@ def save_horaire(request):
             duree = duree,
             patient = my_patient
         )
-        lesion = lesions.objects.filter(patient=request.POST['patient'])
-        horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-        context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion}
-        return render(request, 'dossier.html', context)
+    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+    return render(request, 'dossier.html', context)
         
 def save_lesion(request):
     if request.method == 'POST':
@@ -112,13 +121,69 @@ def save_lesion(request):
             autre         = autre,
             patient       = my_patient
         )
-        lesion = lesions.objects.filter(patient=request.POST['patient'])
-        horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-        context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion}
-        return render(request, 'dossier.html', context)
+    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+    return render(request, 'dossier.html', context)
     
 def save_ouverture_yeux(request):
-    pass    
+    if request.method == 'POST':
+        my_patient = Patient.objects.get(pk=request.POST['patient'])
+        Ouverture_des_yeux.objects.create(
+            libelle         = request.POST['libelle_signe'],
+            score           = int(request.POST['score']),
+            patient         = my_patient
+        )
+    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+    return render(request, 'dossier.html', context)
+    
+def  save_reponse_verbale(request):
+    if request.method == 'POST':
+        my_patient = Patient.objects.get(pk=request.POST['patient'])
+        Reponses_verbale.objects.create(
+            libelle         = request.POST['libelle_signe'],
+            score           = int(request.POST['score']),
+            patient         = my_patient
+        )
+    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+    return render(request, 'dossier.html', context)
+
+def save_reponse_motrice(request):
+    if request.method == 'POST':
+        my_patient = Patient.objects.get(pk=request.POST['patient'])
+        Reponses_motrice.objects.create(
+            libelle         = request.POST['libelle_signe'],
+            score           = int(request.POST['score']),
+            patient         = my_patient
+        )
+    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+    return render(request, 'dossier.html', context)
+
+
+
+        
 
         
 

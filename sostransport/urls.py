@@ -25,5 +25,7 @@ urlpatterns = [
     path('dossier_patient/<id>/', dossier_patient),
     path('save_horaire', save_horaire),
     path('save_lesion', save_lesion),
-    path('save_ouverture_yeux', save_ouverture_yeux)
+    path('save_ouverture_yeux', save_ouverture_yeux),
+    path('save_reponse_verbale', save_reponse_verbale),
+    path('save_reponse_motrice', save_reponse_motrice)
 ]

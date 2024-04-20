@@ -127,24 +127,24 @@ class autre_signe_de_vie(models.Model):
 
 class Ouverture_des_yeux(models.Model):
     libelle = models.CharField(max_length=25)
-    score   = models.IntegerField
+    score   = models.IntegerField(null = True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
     class Meta:
-        db_table = 'ouverture_yeux'
+        db_table = 'ouverture_des_yeux'
 
 class Reponses_verbale(models.Model):
     libelle = models.CharField(max_length=25)
-    score   = models.IntegerField
+    score   = models.IntegerField(null = True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
     class Meta:
-        db_table = 'reponse_verbale'
+        db_table = 'reponses_verbale'
 
 class Reponses_motrice(models.Model):
     libelle = models.CharField(max_length=25)
-    score   = models.IntegerField
+    score   = models.IntegerField(null = True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
     class Meta:
-        db_table = 'reponse_motrice'
+        db_table = 'reponses_motrice'
 
 class Autres_signe_vie(models.Model):
     libelle = models.CharField(max_length=25)

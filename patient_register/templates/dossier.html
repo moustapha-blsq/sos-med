@@ -172,33 +172,86 @@
   <!--End lesion-->
 
   <!--Lesion-->
+  
   <div class="alert alert-info">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ouvertureYeux">
-    <i class="fas fa-plus"></i>
-   </button>
-   <b> Ouverture des yeux </b>
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseVerbale">
-    <i class="fas fa-plus"></i>
-   </button>
-   <b> Réponse verbale </b>
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseMotrice">
-    <i class="fas fa-plus"></i>
-   </button>
-   <b> Réponse motrice </b>
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#autreSigne">
-    <i class="fas fa-plus"></i>
-   </button>
-   <b> Autres signes </b>
+    <table class="table">
+        <tr>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ouvertureYeux">
+                <i class="fas fa-plus"></i>
+                </button><b> Ouvert. yeux </b>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseVerbale">
+                    <i class="fas fa-plus"></i>
+                </button><b> Rép. verbale </b>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseMotrice">
+                    <i class="fas fa-plus"></i>
+                </button><b> Rép. motrice </b>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#autreSigne">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <b> Autres signes </b>
+            </td>
+        </tr>
+    </table>
 </div>
-   
-   <table class="table">
+
+<table class="table">
+    <legend><h6>Ouverture des yeux</h6></legend>
     <tr>
-        
+        <th>Libelle</th>
+        <th>Score</th>
+        <th>Action</th>
     </tr>
+
+    {% for ouvert in ouverture_des_yeux %}
     <tr>
-        
+        <td>{{ouvert.libelle}}</td>
+        <td>{{ouvert.score}}</td>
+        <td> - - -</td>
     </tr>
-   </table>
+    {% endfor %}
+
+</table>
+
+<table class="table">
+    <legend><h6>Réponse verbale</h6></legend>
+    <tr>
+        <th>Libelle</th>
+        <th>Score</th>
+        <th>Action</th>
+    </tr>
+
+    {% for rep_verb in reponses_verbale %}
+    <tr>
+        <td>{{rep_verb.libelle}}</td>
+        <td>{{rep_verb.score}}</td>
+        <td> - - -</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<table class="table">
+    <legend><h6>Réponse motrice</h6></legend>
+    <tr>
+        <th>Libelle</th>
+        <th>Score</th>
+        <th>Action</th>
+    </tr>
+
+    {% for rep_mot in reponses_mot %}
+    <tr>
+        <td>{{rep_mot.libelle}}</td>
+        <td>{{rep_mot.score}}</td>
+        <td> - - -</td>
+    </tr>
+    {% endfor %}
+</table>
 
   <!--End lesion-->
   
@@ -264,9 +317,6 @@
                         value="{{patient.id}}">
                 </div>
             </div>
-           
-
-          
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
           <input type="submit" class="btn btn-primary" value="Enregister"/>
@@ -298,9 +348,9 @@
                     <div class="form-group col-md-12">
                         <select class="custom-select mr-sm-2"
                          id="inlineFormCustomSelect" 
-                         name="nom_lesion">
+                         name="libelle_signe">
                          <option>- - - Sélectionnez - - -</option>
-                         <option value="Spontanee">Spontanée</option>
+                         <option value="Spontanée">Spontanée</option>
                          <option value="Au bruit">Au bruit</option>
                          <option value="A la douleur">A la douleur</option>
                          <option value="Nulle">Nulle</option>
@@ -311,18 +361,118 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <input type="number" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="score" min="0"/>
+                        <input type="hidden" name="patient" value="{{patient.id}}"/>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <input type="submit" class="btn btn-primary" value="Enregister"/>
+                  </div>
             </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <button type="button" class="btn btn-primary">Enregister</button>
-        </div>
+       
       </div>
     </div>
   </div>
   <!--End modal ouverture yeux-->
+
+    <!--Modal Réponse motrice -->
+    <div class="modal fade" id="reponseMotrice" tabindex="-1" role="dialog" aria-labelledby="reponseMotrice" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Réponse motrice</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/save_reponse_motrice">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <select class="custom-select mr-sm-2"
+                             id="inlineFormCustomSelect" 
+                             name="libelle_signe">
+                             <option>- - - Sélectionnez - - -</option>
+                             <option value="A la commande">A la commande</option>
+                             <option value="Orientée">Oriantée</option>
+                             <option value="Flexion retrait">Flexion retrait</option>
+                             <option value="Décoration">Décoration</option>
+                             <option value="Décérébration">Décérébration</option>
+                             <option value="Nulle">Nulle</option>
+                            </select>
+    
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <input type="number" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="score" min="0"/>
+                            <input type="hidden" name="patient" value="{{patient.id}}"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <input type="submit" class="btn btn-primary" value="Enregister"/>
+                      </div>
+                </form>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <!--End Réponse motrice-->
+    
+
+  <!--Modal reponse verbale-->
+
+  
+  <div class="modal fade" id="reponseVerbale" tabindex="-1" role="dialog" aria-labelledby="reponseVerbale" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Réponse verbale</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="/save_reponse_verbale">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <select class="custom-select mr-sm-2"
+                         id="inlineFormCustomSelect" 
+                         name="libelle_signe">
+                         <option>- - - Sélectionnez - - -</option>
+                         <option value="Orienté">Orienté</option>
+                         <option value="Confuse">Confuse</option>
+                         <option value="Inappropriée">Inappropriée</option>
+                         <option value="Incompréhensible">Incompréhensible</option>
+                         <option value="Nulle">Nulle</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="number" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="score" min="0"/>
+                        <input type="hidden" name="patient" value="{{patient.id}}"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <input type="submit" class="btn btn-primary" value="Enregister"/>
+                  </div>
+            </form>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <!--End modal reponse verbale-->
+
+
     <!-- Modal lesion-->
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
