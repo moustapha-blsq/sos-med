@@ -153,6 +153,42 @@ class Autres_signe_vie(models.Model):
     class Meta:
         db_table = 'autres_signe_vie'
 
+class Mise_en_condition(models.Model):
+    scope               = models.CharField(max_length=15, null = True)
+    dyn                 = models.CharField(max_length=15, null = True)
+    oxy                 = models.CharField(max_length=15, null = True)
+    coquille            = models.CharField(max_length=15, null = True)
+    barquette           = models.CharField(max_length=15, null = True)
+    vvp_kt              = models.CharField(max_length=15, null = True)
+    bd                  = models.CharField(max_length=15, null = True)
+    bg                  = models.CharField(max_length=15, null = True)
+    ktc                 = models.CharField(max_length=15, null = True)
+    sonde_gast          = models.CharField(max_length=15, null = True)
+    sonde_vest          = models.CharField(max_length=15, null = True)
+    collier_cervical    = models.CharField(max_length=15, null = True)
+    attelles            = models.CharField(max_length=15, null = True)
+    drain_pleural       = models.CharField(max_length=15, null = True)
+    autre               = models.CharField(max_length=255, null = True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'mise_en_condition'
+
+class Solutes_drogues(models.Model):
+    libelle = models.CharField(max_length=150)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'solutes_drogues'
+
+class Voies_aeriennes(models.Model):
+    o2          = models.CharField(max_length=15)
+    intubation  = models.CharField(max_length=15)
+    sonde       = models.CharField(max_length=15)
+    fio2        = models.CharField(max_length=15)
+    frequence   = models.CharField(max_length=15)
+    vol_courant = models.CharField(max_length=15)
+    peep        = models.CharField(max_length=15)
+    class Meta:
+        db_table = 'voies_aeriennes'
 
 
 

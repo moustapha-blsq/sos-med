@@ -44,15 +44,18 @@ def save(request):
     return render(request, 'home.html', context)
 
 def dossier_patient(request, id):
-    patient = Patient.objects.get(pk=id)
-    horaire_data = Horaires.objects.filter(patient=id)
-    lesion = lesions.objects.filter(patient=id)
-    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=id)
-    rep_verbale = Reponses_verbale.objects.filter(patient=id)
-    horaire_data = Horaires.objects.filter(patient=id)
-    rep_motrice = Reponses_motrice.objects.filter(patient=id)
-    context = {'patient': patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+    patient         = Patient.objects.get(pk=id)
+    horaire_data    = Horaires.objects.filter(patient=id)
+    lesion          = lesions.objects.filter(patient=id)
+    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=id)
+    rep_verbale     = Reponses_verbale.objects.filter(patient=id)
+    horaire_data    = Horaires.objects.filter(patient=id)
+    rep_motrice     = Reponses_motrice.objects.filter(patient=id)
+    autre_signe     = autre_signe_de_vie.objects.filter(patient=id)
+    mise_condition  = Mise_en_condition.objects.filter(patient=id)
+    context         = {'patient': patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
     return render(request, 'dossier.html', context)
 
 def save_horaire(request):
@@ -77,13 +80,16 @@ def save_horaire(request):
             duree = duree,
             patient = my_patient
         )
-    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion          = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
+    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
     context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
     return render(request, 'dossier.html', context)
         
 def save_lesion(request):
@@ -121,13 +127,16 @@ def save_lesion(request):
             autre         = autre,
             patient       = my_patient
         )
-    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion          = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
+    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
     context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
     return render(request, 'dossier.html', context)
     
 def save_ouverture_yeux(request):
@@ -139,12 +148,15 @@ def save_ouverture_yeux(request):
             patient         = my_patient
         )
     ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    rep_verbale    = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion         = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data   = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice    = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    autre_signe    = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
+    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
     context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
     return render(request, 'dossier.html', context)
     
 def  save_reponse_verbale(request):
@@ -155,13 +167,16 @@ def  save_reponse_verbale(request):
             score           = int(request.POST['score']),
             patient         = my_patient
         )
-    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion          = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
+    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
     context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
     return render(request, 'dossier.html', context)
 
 def save_reponse_motrice(request):
@@ -172,13 +187,81 @@ def save_reponse_motrice(request):
             score           = int(request.POST['score']),
             patient         = my_patient
         )
-    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion          = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
+    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
     context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 'reponses_mot': rep_motrice}
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
+    return render(request, 'dossier.html', context)
+
+def save_mouvement(request):
+    if request.method == 'POST':
+        my_patient = Patient.objects.get(pk=request.POST['patient'])
+        autre_signe_de_vie.objects.create(
+            fourmillement_extremite = request.POST['fourmillement'],
+            mouvement_de_ms = request.POST['mouvement_ms'],
+            mouvement_de_mi = request.POST['mouvement_mi'],
+            patient = my_patient
+        )
+    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion          = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
+    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
+    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
+    return render(request, 'dossier.html', context)
+
+def save_mise_condition(request):
+    if request.method == 'POST':
+        my_patient = Patient.objects.get(pk=request.POST['patient'])
+        scp     = request.POST.getlist('scope')
+        dy      = request.POST.getlist('dyn')
+        ox      = request.POST.getlist('oxy')
+        coq     = request.POST.getlist('coquille')
+        barq    = request.POST.getlist('barquette')
+        vvp     = request.POST.getlist('vvp_kt')
+        bd1     = request.POST.getlist('bd')
+        bg1     = request.POST.getlist('bg')
+        collier = request.POST.getlist('collier_cervical')
+        attel   = request.POST.getlist('attelles')
+        drain   = request.POST.getlist('drain_pleural')
+        Mise_en_condition.objects.create(
+            scope               = scp[0],
+            dyn                 = dy[0],
+            oxy                 = ox[0],
+            coquille            = coq[0],
+            barquette           = barq[0],
+            vvp_kt              = vvp[0],
+            bd                  = bd1[0],
+            bg                  = bg1[0],
+            ktc                 = request.POST['ktc'],
+            sonde_gast          = request.POST['sonde_gast'],
+            sonde_vest          = request.POST['sonde_ves'],
+            collier_cervical    = collier[0],
+            attelles            = attel[0],
+            drain_pleural       = drain[0],
+            autre               = request.POST['autre'],
+            patient             = my_patient
+        )
+    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
+    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
+    lesion          = lesions.objects.filter(patient=request.POST['patient'])
+    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
+    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
+    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
+    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
+    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
+               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
+               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition}
     return render(request, 'dossier.html', context)
 
 

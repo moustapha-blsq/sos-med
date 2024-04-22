@@ -192,7 +192,7 @@
                 </button><b> Rép. motrice </b>
             </td>
             <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#autreSigne">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mouvement">
                     <i class="fas fa-plus"></i>
                 </button>
                 <b> Autres signes </b>
@@ -253,7 +253,54 @@
     {% endfor %}
 </table>
 
-  <!--End lesion-->
+<table class="table">
+    <legend><h6>Autre signe </h6></legend>
+    <tr>
+        <th>Formillement extrémités</th>
+        <th>Mouvement des MS</th>
+        <th>Mouvement des MI</th>
+        <th>Action</th>
+    </tr>
+
+    {% for aut_signe in autres_signe %}
+    <tr>
+        <td>{{aut_signe.fourmillement_extremite}}</td>
+        <td>{{aut_signe.mouvement_de_ms}}</td>
+        <td>{{aut_signe.mouvement_de_mi}}</td>
+        <td> - - -</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="alert alert-info">
+    <button type="button" 
+    class="btn btn-primary" data-toggle="modal"
+    data-target="#miseEnCondition">
+    <i class="fas fa-plus"></i>
+   </button><b> Mise en condition</b>
+</div>
+<table class="table">
+    <tr>
+        <th>Scope</th>
+        <th>Dyn</th>
+        <th>Oxy</th>
+        <th>Coquille</th>
+        <th>Barquette</th>
+        <th>VVP KT</th>
+        <th>BD</th>
+        <th>BG</th>
+        <th>KTC</th>
+        <th>Sonde gast.</th>
+        <th>Sonde vés.</th>
+        <th>Collier cervical</th>
+        <th>Attelles</th>
+        <th>Drain pleural</th>
+        <th>Autre</th>
+        <th>Action</th>
+    </tr>
+</table>
+
+  <!--End lesion -->
   
   <!-- Modal horaire-->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -326,12 +373,9 @@
       </div>
     </div>
   </div> 
-
   <!--end modal horaires-->
 
   <!--Modal ouverture yeux-->
-
-  
   <div class="modal fade" id="ouvertureYeux" tabindex="-1" role="dialog" aria-labelledby="ouvertureYeux" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -376,7 +420,7 @@
   </div>
   <!--End modal ouverture yeux-->
 
-    <!--Modal Réponse motrice -->
+  <!--Modal Réponse motrice -->
     <div class="modal fade" id="reponseMotrice" tabindex="-1" role="dialog" aria-labelledby="reponseMotrice" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -425,8 +469,6 @@
     
 
   <!--Modal reponse verbale-->
-
-  
   <div class="modal fade" id="reponseVerbale" tabindex="-1" role="dialog" aria-labelledby="reponseVerbale" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -472,6 +514,73 @@
   </div>
   <!--End modal reponse verbale-->
 
+    <!--Modal Autre signe-->
+    <div class="modal fade" id="mouvement" tabindex="-1" role="dialog" aria-labelledby="mouvement" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Mouvements</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/save_mouvement">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            Fourmillement extrémités
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="fourmillement" id="gridRadios1" value="Oui"/> Oui
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="fourmillement" id="gridRadios1" value="Non"/> Non
+
+                        </div>
+                    </div>
+<hr/>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            Mouvement des MS
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="mouvement_ms" id="gridRadios1" value="Oui"/> Oui
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="radio" name="mouvement_ms" id="gridRadios1" value="Non"/> Non
+
+                        </div>
+                    </div>
+            <hr/>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    Mouvement des MI
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="radio" name="mouvement_mi" id="gridRadios1" value="Oui"/> Oui
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="radio" name="mouvement_mi" id="gridRadios1" value="Non"/> Non
+                    <input type="hidden" name="patient" value="{{patient.id}}"/>
+
+                </div>
+            </div>
+           
+                    
+                    <div class="modal-footer">
+                        <br/><br/>
+                        <input type="reset" class="btn btn-secondary" data-dismiss="modal" value="Fermer"/>
+                        <input type="submit" class="btn btn-primary" value="Enregister"/>
+                      </div>
+                </form>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <!--End modal autre reponse-->
+    
 
     <!-- Modal lesion-->
     <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -585,9 +694,98 @@
     </div>
           </div>
         </div>
-      </div> 
+    </div> 
     
-      <!--end modal lesion-->
+    <!--end modal lesion-->
+    
+    <!-- Modal mise en condition-->
+    <div class="modal fade" id="miseEnCondition" tabindex="-1" role="dialog" aria-labelledby="miseEnCondition" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Mise en condition</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/save_mise_condition">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <input type="checkbox" name="scope" value="1" /> Scope
+                    </div>
+                    <div class="form-group col-md-4">
+                         <input type="checkbox" name="dyn" value="1" /> Dyn
+                    </div>
+                    <div class="form-group col-md-4">
+                         <input type="checkbox" name="oxy" value="1" /> Oxy
+                    </div>
+                    <div class="form-group col-md-4">
+                         <input type="checkbox" name="coquille" value="1" /> Coquille
+                    </div>
+                    <div class="form-group col-md-4">
+                         <input type="checkbox" name="barquette" value="1" /> Barquette
+                         <input type="hidden" name="patient" value="{{patient.id}}"/>
+                    </div>
+                    <div class="form-group col-md-4">
+                    </div>
+
+
+                    <div class="form-group col-md-4">
+                        <input type="checkbox" name="bd" value="1" /> BD
+                   </div>
+                   <div class="form-group col-md-4">
+                        <input type="checkbox" name="bg" value="1" /> BG
+                   </div>
+                   <div class="form-group col-md-4">
+                   </div>
+
+
+                   <div class="form-group col-md-6">
+                    VVP KT n°<br/>
+                    <input type="number" min="0" name="vvp_kt" class="form-control" placeholder="VVP KT"/>
+                   </div>
+                   <div class="form-group col-md-6">
+                    KTC n° <br/>
+                    <input type="number" min="0" name="ktc" class="form-control" placeholder="KTC"/>
+                   </div>
+
+                   <div class="form-group col-md-6">
+                    Sonde gast. n°<br/>
+                    <input type="number" min="0" name="sonde_gast" class="form-control" placeholder="Sonde gast."/>
+                   </div>
+                   <div class="form-group col-md-6">
+                    Sonde vés. n°<br/>
+                    <input type="number" min="0" name="sonde_ves" class="form-control" placeholder="Sonde vés. "/>
+                   </div>
+
+                   <div class="form-group col-md-4">
+                    <input type="checkbox" name="collier_cervical" value="1" /> Collier cervical 
+                    </div>
+                    <div class="form-group col-md-4">
+                            <input type="checkbox" name="attelles" value="1" />  Attelles 
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="checkbox" name="drain_pleural" value="1" />  Drain pleural 
+                    </div>
+                    <div class="form-group col-md-12">
+                        Autre <br/>
+                        <input type="text" name="autre" class="form-control" />
+                    </div>
+                    </div>
+               
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <input type="submit" class="btn btn-primary" value="Enregister"/>
+            </div>
+        </form>
+    </div>
+          </div>
+        </div>
+    </div> 
+    
+    <!--end modal mise en condition-->
     
 
                 </div>

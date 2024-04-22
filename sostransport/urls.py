@@ -27,5 +27,7 @@ urlpatterns = [
     path('save_lesion', save_lesion),
     path('save_ouverture_yeux', save_ouverture_yeux),
     path('save_reponse_verbale', save_reponse_verbale),
-    path('save_reponse_motrice', save_reponse_motrice)
+    path('save_reponse_motrice', save_reponse_motrice),
+    path('save_mouvement', save_mouvement),
+    path('save_mise_condition', save_mise_condition)
 ]
