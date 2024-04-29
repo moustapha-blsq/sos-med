@@ -3,53 +3,53 @@
 
 {%block content%}
 {% include 'base/header.html' %}
- <!-- Begin Page Content -->
- <div class="container-fluid">
-  <div align="right">
-      <a href="/" class="btn btn-primary btn-icon-split">
-          <span class="icon text-white-50">
-              <i class="fas fa-list"></i>
-          </span>
-          <span class="text">Liste patients</span>
-      </a>
-</div>
-<br/>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div align="right">
+        <a href="/" class="btn btn-primary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-list"></i>
+            </span>
+            <span class="text">Liste patients</span>
+        </a>
+    </div>
+    <br />
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Dossier patient</h6>
-        <hr/>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <font size="2px">Prénom:</font><br>
-                            <b>{{patient.prenom}}</b>
-                        </div>
-                        <div class="col-md-2">
-                            <font size="2px">Nom:</font><br>
-                            <b>{{patient.nom}}</b>
-                        </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Dossier patient</h6>
+            <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    <font size="2px">Prénom:</font><br>
+                    <b>{{patient.prenom}}</b>
+                </div>
+                <div class="col-md-2">
+                    <font size="2px">Nom:</font><br>
+                    <b>{{patient.nom}}</b>
+                </div>
 
-                        <div class="col-md-1">
-                            <font size="2px">Age:</font><br>
-                            <b>{{patient.age}} ans</b>
-                        </div>
+                <div class="col-md-1">
+                    <font size="2px">Age:</font><br>
+                    <b>{{patient.age}} ans</b>
+                </div>
 
-                        <div class="col-md-2">
-                            <font size="2px">Numéro de téléphone:</font><br>
-                            <b>{{patient.telephone}}</b>
-                        </div>
+                <div class="col-md-2">
+                    <font size="2px">Numéro de téléphone:</font><br>
+                    <b>{{patient.telephone}}</b>
+                </div>
 
-                        <div class="col-md-2">
-                            <font size="2px">Pays d'origine:</font><br>
-                            <b>{{patient.pays_origine}}</b>
-                        </div>
+                <div class="col-md-2">
+                    <font size="2px">Pays d'origine:</font><br>
+                    <b>{{patient.pays_origine}}</b>
+                </div>
 
-                        <div class="col-md-3">
-                            <font size="2px">Date d'enregistrement:</font><br>
-                            <b>{{patient.date_creation}}</b>
-                        </div>
-                    </div>
-       <!-- <table class="table">
+                <div class="col-md-3">
+                    <font size="2px">Date d'enregistrement:</font><br>
+                    <b>{{patient.date_creation}}</b>
+                </div>
+            </div>
+            <!-- <table class="table">
             <tr>
                 <td>Prénom: <b>{{patient.prenom}}</b></td>
                 <td>Nom: <b>{{patient.nom}}</b></td>
@@ -58,16 +58,16 @@
                 <td>Tel: <b>{{patient.telephone}}</b></td>
             </tr>
         </table>-->
-    </div>
-    <div class="card-body">
-        
-        <div class="row">
-            
-            <div class="col-md-3 well">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-default">DETAILS CONSULTATION</h6>
-                    
-                </div>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-3 well">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-default">DETAILS CONSULTATION</h6>
+
+                    </div>
                     <div class="card-body">
                         <font size="2px">Ambulancier:</font><br>
                         <b>{{patient.ambulancier}}</b><br><br>
@@ -83,720 +83,1071 @@
                         <b>{{patient.trajet}}</b><br><br>
                         <font size="2px">Numéro ambulance:</font><br>
                         <b>{{patient.numero_ambulance}}</b><br><br>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-9">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-default">INFOS PATIENT</h6>
-                </div>
+                <div class="col-md-9">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-default">INFOS PATIENT</h6>
+                    </div>
                     <div class="card-body">
                         <!-- Button trigger modal -->
-                        <div class="alert alert-info"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-   <i class="fas fa-plus"></i>
-  </button><b> Horaires</b></div>
-  <table class="table">
-    <tr>
-        <th>#</th>
-        <th>HT</th>
-        <th>D. base</th>
-        <th>A. lieu</th>
-        <th>D. lieu</th>
-        <th>A.S.R</th>
-        <th>D.S.R</th>
-        <th>A. base</th>
-        <th>Durée</th>
-        <th>Action</th>
-    </tr>
-    {% for horaire in horaires %}
-    <tr>
-        <td>#</td>
-        <td>{{horaire.ht}}</td>
-        <td>{{horaire.d_base}}</td>
-        <td>{{horaire.a_lieu}}</td>
-        <td>{{horaire.d_lieu}}</td>
-        <td>{{horaire.asr}}</td>
-        <td>{{horaire.dsr}}</td>
-        <td>{{horaire.a_base}}</td>
-        <td>{{horaire.duree}}</td>
-        <td> 
-        <a href="/archive/{{horaire.id}}" class="btn btn-danger btn-circle btn-sm" title="Archiver">
-            <i class="fas fa-archive"></i>
-        </a></td>
-    </tr>
-    {% endfor %}
-  </table>
+                        <div class="alert alert-info"><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal">
+                                <i class="fas fa-plus"></i>
+                            </button><b> Horaires</b></div>
+                        <table class="table">
+                            <tr>
+                                <th>#</th>
+                                <th>HT</th>
+                                <th>D. base</th>
+                                <th>A. lieu</th>
+                                <th>D. lieu</th>
+                                <th>A.S.R</th>
+                                <th>D.S.R</th>
+                                <th>A. base</th>
+                                <th>Durée</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for horaire in horaires %}
+                            <tr>
+                                <td>#</td>
+                                <td>{{horaire.ht}}</td>
+                                <td>{{horaire.d_base}}</td>
+                                <td>{{horaire.a_lieu}}</td>
+                                <td>{{horaire.d_lieu}}</td>
+                                <td>{{horaire.asr}}</td>
+                                <td>{{horaire.dsr}}</td>
+                                <td>{{horaire.a_base}}</td>
+                                <td>{{horaire.duree}}</td>
+                                <td>
+                                    <a href="/archive/{{horaire.id}}" class="btn btn-danger btn-circle btn-sm"
+                                        title="Archiver">
+                                        <i class="fas fa-archive"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
 
-  <!--Lesion-->
-  <div class="alert alert-info"><button type="button" 
-    class="btn btn-primary" data-toggle="modal"
-    data-target="#exampleModal2">
-    <i class="fas fa-plus"></i>
-   </button><b> Lesion</b></div>
-   
-   <table class="table">
-    <tr>
-        <th>Lésions</th>
-        <th>Crane</th>
-        <th>Face</th>
-        <th>Cou</th>
-        <th>Rachis</th>
-        <th>Thorax</th>
-        <th>Abdomen</th>
-        <th>Bassin</th>
-        <th>MSD</th>
-        <th>MSG</th>
-        <th>MID</th>
-        <th>MIG</th>
-        <th>Action</th>
-    </tr>
-    {% for les in list_lesion %}
-    <tr>
-        <td>{{les.denomination}}</td>
-        <td>{{les.crane}}</td>
-        <td>{{les.face}}</td>
-        <td>{{les.cou}}</td>
-        <td>{{les.rachis}}</td>
-        <td>{{les.thorax}}</td>
-        <td>{{les.abdomen}}</td>
-        <td>{{les.bassin}}</td>
-        <td>{{les.msd}}</td>
-        <td>{{les.msg}}</td>
-        <td>{{les.mid}}</td>
-        <td>{{les.mig}}</td>
-        <td><a href="/archive/{{les.id}}" class="btn btn-danger btn-circle btn-sm" title="Archiver">
-            <i class="fas fa-archive"></i></td>
-    </tr>
-    {% endfor%}
-   </table>
+                        <!--Lesion-->
+                        <div class="alert alert-info"><button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal2">
+                                <i class="fas fa-plus"></i>
+                            </button><b> Lesion</b></div>
 
-  <!--End lesion-->
+                        <table class="table">
+                            <tr>
+                                <th>Lésions</th>
+                                <th>Crane</th>
+                                <th>Face</th>
+                                <th>Cou</th>
+                                <th>Rachis</th>
+                                <th>Thorax</th>
+                                <th>Abdomen</th>
+                                <th>Bassin</th>
+                                <th>MSD</th>
+                                <th>MSG</th>
+                                <th>MID</th>
+                                <th>MIG</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for les in list_lesion %}
+                            <tr>
+                                <td>{{les.denomination}}</td>
+                                <td>{{les.crane}}</td>
+                                <td>{{les.face}}</td>
+                                <td>{{les.cou}}</td>
+                                <td>{{les.rachis}}</td>
+                                <td>{{les.thorax}}</td>
+                                <td>{{les.abdomen}}</td>
+                                <td>{{les.bassin}}</td>
+                                <td>{{les.msd}}</td>
+                                <td>{{les.msg}}</td>
+                                <td>{{les.mid}}</td>
+                                <td>{{les.mig}}</td>
+                                <td>
+                                    <a href="/archive/{{les.id}}" class="btn btn-danger btn-circle btn-sm"
+                                        title="Archiver">
+                                        <i class="fas fa-archive"></i>
+                                </td>
+                            </tr>
+                            {% endfor%}
+                        </table>
 
-  <!--Lesion-->
-  
-  <div class="alert alert-info">
-    <table class="table">
-        <tr>
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ouvertureYeux">
-                <i class="fas fa-plus"></i>
-                </button><b> Ouvert. yeux </b>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseVerbale">
-                    <i class="fas fa-plus"></i>
-                </button><b> Rép. verbale </b>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reponseMotrice">
-                    <i class="fas fa-plus"></i>
-                </button><b> Rép. motrice </b>
-            </td>
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mouvement">
-                    <i class="fas fa-plus"></i>
-                </button>
-                <b> Autres signes </b>
-            </td>
-        </tr>
-    </table>
-</div>
+                        <!--End lesion-->
 
-<table class="table">
-    <legend><h6>Ouverture des yeux</h6></legend>
-    <tr>
-        <th>Libelle</th>
-        <th>Score</th>
-        <th>Action</th>
-    </tr>
+                        <!--Lesion-->
 
-    {% for ouvert in ouverture_des_yeux %}
-    <tr>
-        <td>{{ouvert.libelle}}</td>
-        <td>{{ouvert.score}}</td>
-        <td> - - -</td>
-    </tr>
-    {% endfor %}
-
-</table>
-
-<table class="table">
-    <legend><h6>Réponse verbale</h6></legend>
-    <tr>
-        <th>Libelle</th>
-        <th>Score</th>
-        <th>Action</th>
-    </tr>
-
-    {% for rep_verb in reponses_verbale %}
-    <tr>
-        <td>{{rep_verb.libelle}}</td>
-        <td>{{rep_verb.score}}</td>
-        <td> - - -</td>
-    </tr>
-    {% endfor %}
-</table>
-
-<table class="table">
-    <legend><h6>Réponse motrice</h6></legend>
-    <tr>
-        <th>Libelle</th>
-        <th>Score</th>
-        <th>Action</th>
-    </tr>
-
-    {% for rep_mot in reponses_mot %}
-    <tr>
-        <td>{{rep_mot.libelle}}</td>
-        <td>{{rep_mot.score}}</td>
-        <td> - - -</td>
-    </tr>
-    {% endfor %}
-</table>
-
-<table class="table">
-    <legend><h6>Autre signe </h6></legend>
-    <tr>
-        <th>Formillement extrémités</th>
-        <th>Mouvement des MS</th>
-        <th>Mouvement des MI</th>
-        <th>Action</th>
-    </tr>
-
-    {% for aut_signe in autres_signe %}
-    <tr>
-        <td>{{aut_signe.fourmillement_extremite}}</td>
-        <td>{{aut_signe.mouvement_de_ms}}</td>
-        <td>{{aut_signe.mouvement_de_mi}}</td>
-        <td> - - -</td>
-    </tr>
-    {% endfor %}
-</table>
-
-<div class="alert alert-info">
-    <button type="button" 
-    class="btn btn-primary" data-toggle="modal"
-    data-target="#miseEnCondition">
-    <i class="fas fa-plus"></i>
-   </button><b> Mise en condition</b>
-</div>
-<table class="table">
-    <tr>
-        <th>Scope</th>
-        <th>Dyn</th>
-        <th>Oxy</th>
-        <th>Coquille</th>
-        <th>Barquette</th>
-        <th>VVP KT</th>
-        <th>BD</th>
-        <th>BG</th>
-        <th>KTC</th>
-        <th>Sonde gast.</th>
-        <th>Sonde vés.</th>
-        <th>Collier cervical</th>
-        <th>Attelles</th>
-        <th>Drain pleural</th>
-        <th>Autre</th>
-        <th>Action</th>
-    </tr>
-</table>
-
-  <!--End lesion -->
-  
-  <!-- Modal horaire-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Saisie Horaires</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="/save_horaire">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">HT</label>
-                    <input type="text" class="form-control" name="ht" id="inputEmail4"
-                        placeholder="au format __h__">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">D. base</label>
-                    <input type="text" name="d_base" class="form-control" id="inputPassword4"
-                        placeholder="au format __h__">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">A. lieu</label>
-                    <input type="text" class="form-control" name="a_lieu" id="inputEmail4"
-                        placeholder="au format __h__">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">D. lieu</label>
-                    <input type="text" name="d_lieu" class="form-control" id="inputPassword4"
-                        placeholder="au format __h__">
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">A.S.R</label>
-                    <input type="text" class="form-control" name="asr" id="inputEmail4"
-                        placeholder="au format __h__">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">D.S.R</label>
-                    <input type="text" name="dsr" class="form-control" id="inputPassword4"
-                        placeholder="au format __h__">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">A. base</label>
-                    <input type="text" class="form-control" name="a_base" id="inputEmail4"
-                        placeholder="au format __h__">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">Durée</label>
-                    <input type="text" name="duree" class="form-control" id="inputPassword4"
-                        placeholder="La durée">
-                 <input type="hidden" name="patient" class="form-control" id="inputPassword4"
-                        value="{{patient.id}}">
-                </div>
-            </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          <input type="submit" class="btn btn-primary" value="Enregister"/>
-        </div>
-    </form>
-</div>
-      </div>
-    </div>
-  </div> 
-  <!--end modal horaires-->
-
-  <!--Modal ouverture yeux-->
-  <div class="modal fade" id="ouvertureYeux" tabindex="-1" role="dialog" aria-labelledby="ouvertureYeux" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ouverture des yeux</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="post" action="/save_ouverture_yeux">
-                {% csrf_token %}
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <select class="custom-select mr-sm-2"
-                         id="inlineFormCustomSelect" 
-                         name="libelle_signe">
-                         <option>- - - Sélectionnez - - -</option>
-                         <option value="Spontanée">Spontanée</option>
-                         <option value="Au bruit">Au bruit</option>
-                         <option value="A la douleur">A la douleur</option>
-                         <option value="Nulle">Nulle</option>
-                        </select>
-
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <input type="number" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="score" min="0"/>
-                        <input type="hidden" name="patient" value="{{patient.id}}"/>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <input type="submit" class="btn btn-primary" value="Enregister"/>
-                  </div>
-            </form>
-        </div>
-       
-      </div>
-    </div>
-  </div>
-  <!--End modal ouverture yeux-->
-
-  <!--Modal Réponse motrice -->
-    <div class="modal fade" id="reponseMotrice" tabindex="-1" role="dialog" aria-labelledby="reponseMotrice" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Réponse motrice</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"></span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/save_reponse_motrice">
-                    {% csrf_token %}
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <select class="custom-select mr-sm-2"
-                             id="inlineFormCustomSelect" 
-                             name="libelle_signe">
-                             <option>- - - Sélectionnez - - -</option>
-                             <option value="A la commande">A la commande</option>
-                             <option value="Orientée">Oriantée</option>
-                             <option value="Flexion retrait">Flexion retrait</option>
-                             <option value="Décoration">Décoration</option>
-                             <option value="Décérébration">Décérébration</option>
-                             <option value="Nulle">Nulle</option>
-                            </select>
-    
+                        <div class="alert alert-info">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#ouvertureYeux">
+                                            <i class="fas fa-plus"></i>
+                                        </button><b> Ouvert. yeux </b>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#reponseVerbale">
+                                            <i class="fas fa-plus"></i>
+                                        </button><b> Rép. verbale </b>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#reponseMotrice">
+                                            <i class="fas fa-plus"></i>
+                                        </button><b> Rép. motrice </b>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#mouvement">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <b> Autres signes </b>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <input type="number" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="score" min="0"/>
-                            <input type="hidden" name="patient" value="{{patient.id}}"/>
+
+                        <table class="table">
+                            <legend>
+                                <h6>Ouverture des yeux</h6>
+                            </legend>
+                            <tr>
+                                <th>Libelle</th>
+                                <th>Score</th>
+                                <th>Action</th>
+                            </tr>
+
+                            {% for ouvert in ouverture_des_yeux %}
+                            <tr>
+                                <td>{{ouvert.libelle}}</td>
+                                <td>{{ouvert.score}}</td>
+                                <td> - - -</td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+
+                        <table class="table">
+                            <legend>
+                                <h6>Réponse verbale</h6>
+                            </legend>
+                            <tr>
+                                <th>Libelle</th>
+                                <th>Score</th>
+                                <th>Action</th>
+                            </tr>
+
+                            {% for rep_verb in reponses_verbale %}
+                            <tr>
+                                <td>{{rep_verb.libelle}}</td>
+                                <td>{{rep_verb.score}}</td>
+                                <td> - - -</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <table class="table">
+                            <legend>
+                                <h6>Réponse motrice</h6>
+                            </legend>
+                            <tr>
+                                <th>Libelle</th>
+                                <th>Score</th>
+                                <th>Action</th>
+                            </tr>
+
+                            {% for rep_mot in reponses_mot %}
+                            <tr>
+                                <td>{{rep_mot.libelle}}</td>
+                                <td>{{rep_mot.score}}</td>
+                                <td> - - -</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <table class="table">
+                            <legend>
+                                <h6>Autre signe </h6>
+                            </legend>
+                            <tr>
+                                <th>Formillement extrémités</th>
+                                <th>Mouvement des MS</th>
+                                <th>Mouvement des MI</th>
+                                <th>Action</th>
+                            </tr>
+
+                            {% for aut_signe in autres_signe %}
+                            <tr>
+                                <td>{{aut_signe.fourmillement_extremite}}</td>
+                                <td>{{aut_signe.mouvement_de_ms}}</td>
+                                <td>{{aut_signe.mouvement_de_mi}}</td>
+                                <td> - - -</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <div class="alert alert-info">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#miseEnCondition">
+                                <i class="fas fa-plus"></i>
+                            </button><b> Mise en condition</b>
                         </div>
+                        <table class="table">
+                            <tr>
+                                <th>Scope</th>
+                                <th>Dyn</th>
+                                <th>Oxy</th>
+                                <th>Coquille</th>
+                                <th>Barquette</th>
+                                <th>VVP KT</th>
+                                <th>BD</th>
+                                <th>BG</th>
+                                <th>KTC</th>
+                                <th>Sonde gast.</th>
+                                <th>Sonde vés.</th>
+                                <th>Collier cervical</th>
+                                <th>Attelles</th>
+                                <th>Drain pleural</th>
+                                <th>Autre</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for cond in mise_en_cond %}
+
+                            <tr>
+                                <td>{{cond.scope}}</td>
+                                <td>{{cond.dyn}}</td>
+                                <td>{{cond.oxy}}</td>
+                                <td>{{cond.coquille}}</td>
+                                <td>{{cond.barquette}}</td>
+                                <td>{{cond.vvp_kt}}</td>
+                                <td>{{cond.bd}}</td>
+                                <td>{{cond.bg}}</td>
+                                <td>{{cond.ktc}}</td>
+                                <td>{{cond.sonde_gast}}</td>
+                                <td>{{cond.sonde_vest}}</td>
+                                <td>{{cond.collier_cervical}}</td>
+                                <td>{{cond.attelles}}</td>
+                                <td>{{cond.drain_pleural}}</td>
+                                <td>{{cond.autre}}</td>
+                            </tr>
+
+                            {% endfor %}
+                        </table>
+                        <div class="alert alert-info">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#solutesDrogues">
+                                <i class="fas fa-plus"></i>
+                            </button><b> Solutés/Drogues</b>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th>Soluté</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Action</th>
+                            </tr>
+                            {% for sol in solute_drogue %}
+                            <tr>
+                                <td>{{sol.libelle}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="/archive/{{sol.id}}" class="btn btn-danger btn-circle btn-sm"
+                                        title="Archiver">
+                                        <i class="fas fa-archive"></i>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        <!-- Modal Solutes_drogue-->
+                        <div class="modal fade" id="solutesDrogues" tabindex="-1" role="dialog"
+                            aria-labelledby="solutesDrogues" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Solutés / Drogues</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/solute_drogue">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Solutés / Drogues</label>
+                                                    <textarea class="form-control" name="solute_drogues" id="inputEmail4"
+                                                        placeholder="Décrire ici" rows="10" required></textarea>
+                                                        <input type="hidden" name="patient" value="{{patient.id}}" />
+                                                        
+                                                </div>
+                                               
+                                               
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end modal Solutes_drogue-->
+                        
+                        
+                        <div class="alert alert-info">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#voieArerienne">
+                                <i class="fas fa-plus"></i>
+                            </button><b> Voie aériennes </b>
+                        </div>
+
+                        <table class="table">
+                            <tr>
+                                <th>O2</th>
+                                <th>Intubation</th>
+                                <th>Sonde n°</th>
+                                <th>FiO2</th>
+                                <th>Fréquence</th>
+                                <th>Volume courant</th>
+                                <th>PEEP</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for voie in voies_aerien %}
+                            <tr>
+                                <td>{{voie.o2}}</td>
+                                <td>{{voie.intubation}}</td>
+                                <td>{{voie.sonde}}</td>
+                                <td>{{voie.fio2}}</td>
+                                <td>{{voie.frequence}}</td>
+                                <td>{{voie.vol_courant}}</td>
+                                <td>{{voie.peep}}</td>
+                                <td><a href="/archive/{{voie.id}}" class="btn btn-danger btn-circle btn-sm"
+                                    title="Archiver">
+                                    <i class="fas fa-archive"></i></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <div class="alert alert-info">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#constant">
+                                <i class="fas fa-plus"></i>
+                            </button><b> Constants / Heures </b>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th>Heure</th>
+                                <th>Poul</th>
+                                <th>TA</th>
+                                <th>FR</th>
+                                <th>SPO2/FiO2</th>
+                                <th>Temperature</th>
+                                <th>Glasgow</th>
+                                <th>Glycémie</th>
+                                <th>Douleur</th>
+                                <th>Diurèse</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for const in my_constants %}
+                            <tr>
+                                <td>{{const.poul}}</td>
+                                <td>{{const.poul}}</td>
+                                <td>{{const.TA}}</td>
+                                <td>{{const.FR}}</td>
+                                <td>{{const.spo2_fioo2}}</td>
+                                <td>{{const.temperature}}</td>
+                                <td>{{const.glasgow}}</td>
+                                <td>{{const.glycemie}}</td>
+                                <td>{{const.douleur}}</td>
+                                <td>{{const.diurese}}</td>
+                                <td><a href="/archive/{{const.id}}" class="btn btn-danger btn-circle btn-sm"
+                                    title="Archiver">
+                                    <i class="fas fa-archive"></i></td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <!-- Modal voies aérienne-->
+                        <div class="modal fade" id="voieArerienne" tabindex="-1" role="dialog"
+                            aria-labelledby="voieArerienne" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Voie aérienne</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/voie_aerienne">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="">O2</label>
+                                                    <select class="form-control" name="o2" required>
+                                                        <option>- - - Sélectionnez - - -</option>
+                                                        <option value="nasal">Nasal</option>
+                                                        <option value="masque">Masque</option>
+                                                        <option value="-1/mn">-1/mn</option>
+                                                    </select>
+                                                    
+                                                        <input type="hidden" name="patient" value="{{patient.id}}" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">Intubation</label>
+                                                    <select class="form-control" name="intubation" required>
+                                                        <option>- - - Sélectionnez - - -</option>
+                                                        <option value="oroT">oroT</option>
+                                                        <option value="nasoT">nasoT</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="">sonde n° </label>
+                                                    <input type="text" class="form-control" name="sonde"/>
+
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">FiO2</label>
+                                                    <input type="text" class="form-control" name="fio2"/>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">Fréquence </label>
+                                                    <input type="text" class="form-control" name="frequence"/>
+
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">Volume courant</label>
+                                                    <input type="text" class="form-control" name="vol_courant"/>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="">PEEP</label>
+                                                    <input type="text" class="form-control" name="peep"/>
+                                                </div>
+                                    
+                                               
+                                               
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end modal voies aérienne-->
+
+
+
+
+                        <!--End lesion -->
+
+
+                        <!-- Modal horaire-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Saisie Horaires</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_horaire">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">HT</label>
+                                                    <input type="text" class="form-control" name="ht" id="inputEmail4"
+                                                        placeholder="au format __h__">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">D. base</label>
+                                                    <input type="text" name="d_base" class="form-control"
+                                                        id="inputPassword4" placeholder="au format __h__">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">A. lieu</label>
+                                                    <input type="text" class="form-control" name="a_lieu"
+                                                        id="inputEmail4" placeholder="au format __h__">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">D. lieu</label>
+                                                    <input type="text" name="d_lieu" class="form-control"
+                                                        id="inputPassword4" placeholder="au format __h__">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">A.S.R</label>
+                                                    <input type="text" class="form-control" name="asr" id="inputEmail4"
+                                                        placeholder="au format __h__">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">D.S.R</label>
+                                                    <input type="text" name="dsr" class="form-control"
+                                                        id="inputPassword4" placeholder="au format __h__">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">A. base</label>
+                                                    <input type="text" class="form-control" name="a_base"
+                                                        id="inputEmail4" placeholder="au format __h__">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Durée</label>
+                                                    <input type="text" name="duree" class="form-control"
+                                                        id="inputPassword4" placeholder="La durée">
+                                                    <input type="hidden" name="patient" class="form-control"
+                                                        id="inputPassword4" value="{{patient.id}}">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end modal horaires-->
+
+                        <!--Modal ouverture yeux-->
+                        <div class="modal fade" id="ouvertureYeux" tabindex="-1" role="dialog"
+                            aria-labelledby="ouvertureYeux" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ouverture des yeux</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_ouverture_yeux">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                                        name="libelle_signe">
+                                                        <option>- - - Sélectionnez - - -</option>
+                                                        <option value="Spontanée">Spontanée</option>
+                                                        <option value="Au bruit">Au bruit</option>
+                                                        <option value="A la douleur">A la douleur</option>
+                                                        <option value="Nulle">Nulle</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <input type="number" class="custom-select mr-sm-2"
+                                                        id="inlineFormCustomSelect" name="score" min="0" />
+                                                    <input type="hidden" name="patient" value="{{patient.id}}" />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--End modal ouverture yeux-->
+
+                        <!--Modal Réponse motrice -->
+                        <div class="modal fade" id="reponseMotrice" tabindex="-1" role="dialog"
+                            aria-labelledby="reponseMotrice" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Réponse motrice</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_reponse_motrice">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                                        name="libelle_signe">
+                                                        <option>- - - Sélectionnez - - -</option>
+                                                        <option value="A la commande">A la commande</option>
+                                                        <option value="Orientée">Oriantée</option>
+                                                        <option value="Flexion retrait">Flexion retrait</option>
+                                                        <option value="Décoration">Décoration</option>
+                                                        <option value="Décérébration">Décérébration</option>
+                                                        <option value="Nulle">Nulle</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <input type="number" class="custom-select mr-sm-2"
+                                                        id="inlineFormCustomSelect" name="score" min="0" />
+                                                    <input type="hidden" name="patient" value="{{patient.id}}" />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Réponse motrice-->
+
+
+                        <!--Modal reponse verbale-->
+                        <div class="modal fade" id="reponseVerbale" tabindex="-1" role="dialog"
+                            aria-labelledby="reponseVerbale" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Réponse verbale</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_reponse_verbale">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                                        name="libelle_signe">
+                                                        <option>- - - Sélectionnez - - -</option>
+                                                        <option value="Orienté">Orienté</option>
+                                                        <option value="Confuse">Confuse</option>
+                                                        <option value="Inappropriée">Inappropriée</option>
+                                                        <option value="Incompréhensible">Incompréhensible</option>
+                                                        <option value="Nulle">Nulle</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <input type="number" class="custom-select mr-sm-2"
+                                                        id="inlineFormCustomSelect" name="score" min="0" />
+                                                    <input type="hidden" name="patient" value="{{patient.id}}" />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--End modal reponse verbale-->
+
+                        <!--Modal Autre signe-->
+                        <div class="modal fade" id="mouvement" tabindex="-1" role="dialog" aria-labelledby="mouvement"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Mouvements</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_mouvement">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-8">
+                                                    Fourmillement extrémités
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <input type="radio" name="fourmillement" id="gridRadios1"
+                                                        value="Oui" /> Oui
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <input type="radio" name="fourmillement" id="gridRadios1"
+                                                        value="Non" /> Non
+
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="form-row">
+                                                <div class="form-group col-md-8">
+                                                    Mouvement des MS
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <input type="radio" name="mouvement_ms" id="gridRadios1"
+                                                        value="Oui" /> Oui
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <input type="radio" name="mouvement_ms" id="gridRadios1"
+                                                        value="Non" /> Non
+
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="form-row">
+                                                <div class="form-group col-md-8">
+                                                    Mouvement des MI
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <input type="radio" name="mouvement_mi" id="gridRadios1"
+                                                        value="Oui" /> Oui
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <input type="radio" name="mouvement_mi" id="gridRadios1"
+                                                        value="Non" /> Non
+                                                    <input type="hidden" name="patient" value="{{patient.id}}" />
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <br /><br />
+                                                <input type="reset" class="btn btn-secondary" data-dismiss="modal"
+                                                    value="Fermer" />
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--End modal autre reponse-->
+
+
+                        <!-- Modal lesion-->
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Saisie lesion</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_lesion">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                                                        name="nom_lesion">
+                                                        <option>- - - Sélectionnez - - -</option>
+                                                        <option value="Traumatisme">Traumatisme</option>
+                                                        <option value="Plaie">Plaie</option>
+                                                        <option value="Hémorragie">Hémorragie</option>
+                                                        <option value="Ex ferme">Ex ferme</option>
+                                                        <option value="Fx ouverte">Fx ouverte</option>
+                                                        <option value="Brulure">Brûlure</option>
+                                                        <option value="Douleur">Douleur</option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Crane</label>
+                                                    <input type="text" class="form-control" name="crane"
+                                                        id="inputEmail4" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Face</label>
+                                                    <input type="text" class="form-control" name="face" id="inputEmail4"
+                                                        placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Cou</label>
+                                                    <input type="text" class="form-control" name="cou" id="inputEmail4"
+                                                        placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Rachis</label>
+                                                    <input type="text" class="form-control" name="rachis"
+                                                        id="inputEmail4" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Thorax</label>
+                                                    <input type="text" class="form-control" name="thorax"
+                                                        id="inputEmail4" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Abdomen</label>
+                                                    <input type="text" class="form-control" name="abdomen"
+                                                        id="inputEmail4" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Bassin</label>
+                                                    <input type="text" class="form-control" name="bassin"
+                                                        id="inputEmail4" placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">MSD</label>
+                                                    <input type="text" class="form-control" name="msd" id="inputEmail4"
+                                                        placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">MSG</label>
+                                                    <input type="text" class="form-control" name="msg" id="inputEmail4"
+                                                        placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">MID</label>
+                                                    <input type="text" class="form-control" name="mid" id="inputEmail4"
+                                                        placeholder="">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">MIG</label>
+                                                    <input type="text" class="form-control" name="mig" id="inputEmail4"
+                                                        placeholder="">
+                                                    <input type="hidden" name="patient" class="form-control"
+                                                        id="inputPassword4" value="{{patient.id}}">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Autre remarque</label>
+                                                    <textarea name="autre" class="form-control" id="inputEmail4"
+                                                        placeholder=""></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end modal lesion-->
+
+                        <!-- Modal mise en condition-->
+                        <div class="modal fade" id="miseEnCondition" tabindex="-1" role="dialog"
+                            aria-labelledby="miseEnCondition" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Mise en condition</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_mise_condition">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="scope" value="1" /> Scope
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="dyn" value="1" /> Dyn
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="oxy" value="1" /> Oxy
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="coquille" value="1" /> Coquille
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="barquette" value="1" /> Barquette
+                                                    <input type="hidden" name="patient" value="{{patient.id}}" />
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                </div>
+
+
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="bd" value="1" /> BD
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="bg" value="1" /> BG
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                </div>
+
+
+                                                <div class="form-group col-md-6">
+                                                    VVP KT n°<br />
+                                                    <input type="number" min="0" name="vvp_kt" class="form-control"
+                                                        placeholder="VVP KT" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    KTC n° <br />
+                                                    <input type="number" min="0" name="ktc" class="form-control"
+                                                        placeholder="KTC" />
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    Sonde gast. n°<br />
+                                                    <input type="number" min="0" name="sonde_gast" class="form-control"
+                                                        placeholder="Sonde gast." />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    Sonde vés. n°<br />
+                                                    <input type="number" min="0" name="sonde_ves" class="form-control"
+                                                        placeholder="Sonde vés. " />
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="collier_cervical" value="1" /> Collier
+                                                    cervical
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="attelles" value="1" /> Attelles
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <input type="checkbox" name="drain_pleural" value="1" /> Drain
+                                                    pleural
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    Autre <br />
+                                                    <input type="text" name="autre" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end modal mise en condition-->
+                         <!-- Modal Constants/Heures -->
+                         <div class="modal fade" id="constant" tabindex="-1" role="dialog"
+                         aria-labelledby="miseEnCondition" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title" id="exampleModalLabel">Constants / Heures</h5>
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <form method="post" action="/save_constant">
+                                         {% csrf_token %}
+                                         <div class="form-row">
+                                             <div class="form-group col-md-12">
+                                                 Heure (HH:MM)<br />
+                                                 <input type="time" name="heure" class="form-control" required placeholder="HH:MM"/>
+                                             </div>
+                                             <div class="form-group col-md-12">
+                                                Poul <br />
+                                                <input type="number" name="poul" class="form-control" min="0"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                TA <br />
+                                                <input type="text" name="ta" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                FR<br />
+                                                <input type="text" name="fr" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                SPO2/FiO2<br />
+                                                <input type="text" name="spo2_fio2" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                Température<br />
+                                                <input type="temperature" name="temperature" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                Glasgow<br />
+                                                <input type="glasgow" name="glasgow" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                Glycémie<br />
+                                                <input type="text" name="glycemie" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                Douleur<br />
+                                                <input type="text" name="douleur" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                Diurèse<br />
+                                                <input type="text" name="diurese" class="form-control"/>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                Commentaire<br />
+                                                <textarea name="commentaire" class="form-control" rows="4"></textarea>
+                                                <input type="hidden" name="patient" value="{{patient.id}}"/>
+                                            </div>
+                                         </div>
+
+                                         <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary"
+                                                 data-dismiss="modal">Fermer</button>
+                                             <input type="submit" class="btn btn-primary" value="Enregister" />
+                                         </div>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <!--end modal mise en condition-->
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <input type="submit" class="btn btn-primary" value="Enregister"/>
-                      </div>
-                </form>
+                </div>
+
             </div>
-           
-          </div>
         </div>
-      </div>
-      <!--End Réponse motrice-->
-    
-
-  <!--Modal reponse verbale-->
-  <div class="modal fade" id="reponseVerbale" tabindex="-1" role="dialog" aria-labelledby="reponseVerbale" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Réponse verbale</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="post" action="/save_reponse_verbale">
-                {% csrf_token %}
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <select class="custom-select mr-sm-2"
-                         id="inlineFormCustomSelect" 
-                         name="libelle_signe">
-                         <option>- - - Sélectionnez - - -</option>
-                         <option value="Orienté">Orienté</option>
-                         <option value="Confuse">Confuse</option>
-                         <option value="Inappropriée">Inappropriée</option>
-                         <option value="Incompréhensible">Incompréhensible</option>
-                         <option value="Nulle">Nulle</option>
-                        </select>
-
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <input type="number" class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="score" min="0"/>
-                        <input type="hidden" name="patient" value="{{patient.id}}"/>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <input type="submit" class="btn btn-primary" value="Enregister"/>
-                  </div>
-            </form>
-        </div>
-       
-      </div>
-    </div>
-  </div>
-  <!--End modal reponse verbale-->
-
-    <!--Modal Autre signe-->
-    <div class="modal fade" id="mouvement" tabindex="-1" role="dialog" aria-labelledby="mouvement" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Mouvements</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"></span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/save_mouvement">
-                    {% csrf_token %}
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            Fourmillement extrémités
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="radio" name="fourmillement" id="gridRadios1" value="Oui"/> Oui
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="radio" name="fourmillement" id="gridRadios1" value="Non"/> Non
-
-                        </div>
-                    </div>
-<hr/>
-                    <div class="form-row">
-                        <div class="form-group col-md-8">
-                            Mouvement des MS
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="radio" name="mouvement_ms" id="gridRadios1" value="Oui"/> Oui
-                        </div>
-                        <div class="form-group col-md-2">
-                            <input type="radio" name="mouvement_ms" id="gridRadios1" value="Non"/> Non
-
-                        </div>
-                    </div>
-            <hr/>
-            <div class="form-row">
-                <div class="form-group col-md-8">
-                    Mouvement des MI
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="mouvement_mi" id="gridRadios1" value="Oui"/> Oui
-                </div>
-                <div class="form-group col-md-2">
-                    <input type="radio" name="mouvement_mi" id="gridRadios1" value="Non"/> Non
-                    <input type="hidden" name="patient" value="{{patient.id}}"/>
-
-                </div>
-            </div>
-           
-                    
-                    <div class="modal-footer">
-                        <br/><br/>
-                        <input type="reset" class="btn btn-secondary" data-dismiss="modal" value="Fermer"/>
-                        <input type="submit" class="btn btn-primary" value="Enregister"/>
-                      </div>
-                </form>
-            </div>
-           
-          </div>
-        </div>
-      </div>
-      <!--End modal autre reponse-->
-    
-
-    <!-- Modal lesion-->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Saisie lesion</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form method="post" action="/save_lesion">
-                {% csrf_token %}
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <select class="custom-select mr-sm-2"
-                         id="inlineFormCustomSelect" 
-                         name="nom_lesion">
-                         <option>- - - Sélectionnez - - -</option>
-                         <option value="Traumatisme">Traumatisme</option>
-                         <option value="Plaie">Plaie</option>
-                         <option value="Hémorragie">Hémorragie</option>
-                         <option value="Ex ferme">Ex ferme</option>
-                         <option value="Fx ouverte">Fx ouverte</option>
-                         <option value="Brulure">Brûlure</option>
-                         <option value="Douleur">Douleur</option>
-                        </select>
-
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Crane</label>
-                        <input type="text" 
-                        class="form-control" name="crane" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Face</label>
-                        <input type="text" 
-                        class="form-control" name="face" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Cou</label>
-                        <input type="text" 
-                        class="form-control" name="cou" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Rachis</label>
-                        <input type="text" 
-                        class="form-control" name="rachis" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Thorax</label>
-                        <input type="text" 
-                        class="form-control" name="thorax" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Abdomen</label>
-                        <input type="text" 
-                        class="form-control" name="abdomen" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Bassin</label>
-                        <input type="text" 
-                        class="form-control" name="bassin" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">MSD</label>
-                        <input type="text" 
-                        class="form-control" name="msd" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">MSG</label>
-                        <input type="text" 
-                        class="form-control" name="msg" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">MID</label>
-                        <input type="text" 
-                        class="form-control" name="mid" id="inputEmail4"
-                            placeholder="">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">MIG</label>
-                        <input type="text" 
-                        class="form-control" name="mig" id="inputEmail4"
-                            placeholder="">
-                        <input type="hidden" name="patient" class="form-control" id="inputPassword4"
-                        value="{{patient.id}}">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Autre remarque</label>
-                        <textarea name="autre" class="form-control" id="inputEmail4"
-                            placeholder=""></textarea>
-                    </div>
-                </div>
-               
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-              <input type="submit" class="btn btn-primary" value="Enregister"/>
-            </div>
-        </form>
-    </div>
-          </div>
-        </div>
-    </div> 
-    
-    <!--end modal lesion-->
-    
-    <!-- Modal mise en condition-->
-    <div class="modal fade" id="miseEnCondition" tabindex="-1" role="dialog" aria-labelledby="miseEnCondition" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Mise en condition</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form method="post" action="/save_mise_condition">
-                {% csrf_token %}
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <input type="checkbox" name="scope" value="1" /> Scope
-                    </div>
-                    <div class="form-group col-md-4">
-                         <input type="checkbox" name="dyn" value="1" /> Dyn
-                    </div>
-                    <div class="form-group col-md-4">
-                         <input type="checkbox" name="oxy" value="1" /> Oxy
-                    </div>
-                    <div class="form-group col-md-4">
-                         <input type="checkbox" name="coquille" value="1" /> Coquille
-                    </div>
-                    <div class="form-group col-md-4">
-                         <input type="checkbox" name="barquette" value="1" /> Barquette
-                         <input type="hidden" name="patient" value="{{patient.id}}"/>
-                    </div>
-                    <div class="form-group col-md-4">
-                    </div>
 
 
-                    <div class="form-group col-md-4">
-                        <input type="checkbox" name="bd" value="1" /> BD
-                   </div>
-                   <div class="form-group col-md-4">
-                        <input type="checkbox" name="bg" value="1" /> BG
-                   </div>
-                   <div class="form-group col-md-4">
-                   </div>
+        {% include 'base/footer.html' %}
 
-
-                   <div class="form-group col-md-6">
-                    VVP KT n°<br/>
-                    <input type="number" min="0" name="vvp_kt" class="form-control" placeholder="VVP KT"/>
-                   </div>
-                   <div class="form-group col-md-6">
-                    KTC n° <br/>
-                    <input type="number" min="0" name="ktc" class="form-control" placeholder="KTC"/>
-                   </div>
-
-                   <div class="form-group col-md-6">
-                    Sonde gast. n°<br/>
-                    <input type="number" min="0" name="sonde_gast" class="form-control" placeholder="Sonde gast."/>
-                   </div>
-                   <div class="form-group col-md-6">
-                    Sonde vés. n°<br/>
-                    <input type="number" min="0" name="sonde_ves" class="form-control" placeholder="Sonde vés. "/>
-                   </div>
-
-                   <div class="form-group col-md-4">
-                    <input type="checkbox" name="collier_cervical" value="1" /> Collier cervical 
-                    </div>
-                    <div class="form-group col-md-4">
-                            <input type="checkbox" name="attelles" value="1" />  Attelles 
-                    </div>
-                    <div class="form-group col-md-4">
-                        <input type="checkbox" name="drain_pleural" value="1" />  Drain pleural 
-                    </div>
-                    <div class="form-group col-md-12">
-                        Autre <br/>
-                        <input type="text" name="autre" class="form-control" />
-                    </div>
-                    </div>
-               
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-              <input type="submit" class="btn btn-primary" value="Enregister"/>
-            </div>
-        </form>
-    </div>
-          </div>
-        </div>
-    </div> 
-    
-    <!--end modal mise en condition-->
-    
-
-                </div>
-            </div>
-        
-    </div>
-</div>
-
-
-{% include 'base/footer.html' %}
-
-{%endblock%}
-
- 
+        {%endblock%}

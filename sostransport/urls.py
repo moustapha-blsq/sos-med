@@ -29,5 +29,9 @@ urlpatterns = [
     path('save_reponse_verbale', save_reponse_verbale),
     path('save_reponse_motrice', save_reponse_motrice),
     path('save_mouvement', save_mouvement),
-    path('save_mise_condition', save_mise_condition)
+    path('save_mise_condition', save_mise_condition),
+    path('solute_drogue', solute_drogue),
+    path('voie_aerienne', voie_aerienne),
+    path('save_constant', save_constant),
+    path('logout', logout)
 ]

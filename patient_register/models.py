@@ -187,8 +187,25 @@ class Voies_aeriennes(models.Model):
     frequence   = models.CharField(max_length=15)
     vol_courant = models.CharField(max_length=15)
     peep        = models.CharField(max_length=15)
+    patient     = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
     class Meta:
         db_table = 'voies_aeriennes'
+
+class Constant(models.Model):
+    heure       = models.CharField(max_length=25)
+    poul        = models.CharField(max_length=25)
+    TA          = models.CharField(max_length=25)
+    FR          = models.CharField(max_length=25)
+    spo2_fioo2  = models.CharField(max_length=25)
+    temperature = models.CharField(max_length=25)
+    glasgow     = models.CharField(max_length=25)
+    glycemie    = models.CharField(max_length=25)
+    douleur     = models.CharField(max_length=25)
+    diurese     = models.CharField(max_length=25)
+    commentaire = models.CharField(max_length=155)
+    patient     = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'constant'
 
 
 
