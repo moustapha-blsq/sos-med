@@ -29,6 +29,8 @@ CSRF_COOKIE_SECURE = False
 
 ALLOWED_HOSTS = []
 
+# Django admin credentials : username = moustapha, pw: passer@2024
+
 
 # Application definition
 
