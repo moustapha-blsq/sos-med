@@ -10,7 +10,7 @@ def home(request,*args, **kwargs):
     #patient_count = all_patients.count()
     context = {'patients': all_patients}
     #return HttpResponse(template.render())
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 def add_patient(request,*args, **kwargs):
     template = loader.get_template('add_patient.html')

@@ -29,9 +29,9 @@
                     <span>Personel</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="/consommable/home">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Médicament</span></a>
+                    <span>Consommables</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">
@@ -102,7 +102,13 @@
                                     </div>-->
                                 </form>
                             </div>
+                            
                         </li>
+                        {% if user.is_authenticate %}
+                            <p>Utilisateur connecté : {{user.username}}</p>
+                        {% else %}
+                            <p>{{user.username}}</p>
+                        {% endif %}
 
                         <!-- Nav Item - Alerts -->
 

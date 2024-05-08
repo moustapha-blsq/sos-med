@@ -29,15 +29,18 @@
   </head>
 
 <body class="text-center form-connexion">
-    <form method="post" action="login" class="form-signin">
+    <form method="post" action="/accounts/login/" class="form-signin">
         {% csrf_token %}
       <img src="{%static 'img/logo.png' %}" alt="" width="90%"><br/><br/>
       <h6><b>FICHE DE TRANSPORT MEDICALISE</b></h6>
+      {% if message %}
+      <div class="alert alert-danger"> {{message}}</div>
+      {% endif %}
       <!--<h2 class="h3 mb-3 font-weight-normal">AUTHENTIFICATION</h2>-->
       <label for="inputEmail" class="sr-only">Login</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Login" required="" autofocus="">
+      <input type="email" id="inputEmail" class="form-control" name="username" placeholder="Login" required="" autofocus="">
       <label for="inputPassword" class="sr-only">Mot de passe</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" required="">
       <div class="checkbox mb-3">
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
