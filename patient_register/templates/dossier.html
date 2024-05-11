@@ -38,15 +38,19 @@
                     <font size="2px">Numéro de téléphone:</font><br>
                     <b>{{patient.telephone}}</b>
                 </div>
+                <div class="col-md-2">
+                    <font size="2px">Adresse:</font><br>
+                    <b>{{patient.adresse}}</b>
+                </div>
 
                 <div class="col-md-2">
                     <font size="2px">Pays d'origine:</font><br>
                     <b>{{patient.pays_origine}}</b>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <font size="2px">Date d'enregistrement:</font><br>
-                    <b>{{patient.date_creation}}</b>
+                    
                 </div>
             </div>
             <!-- <table class="table">
@@ -83,6 +87,8 @@
                         <b>{{patient.trajet}}</b><br><br>
                         <font size="2px">Numéro ambulance:</font><br>
                         <b>{{patient.numero_ambulance}}</b><br><br>
+                        <font size="2px">Date enregistrement:</font><br>
+                        <b>{{patient.date_creation}}</b>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -488,6 +494,93 @@
                             {% endfor %}
                         </table>
 
+                        <div class="alert alert-info">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#consommables">
+                                <i class="fas fa-plus"></i>
+                            </button><b>  Consommables utilisés </b>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th>Nom consommable</th>
+                                <th>Nombre</th>
+                                <th>Chargés</th>
+                                <th>F.N.C</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for consom_ut in consommables_utilises %}
+                                <tr>
+                                    <td>{{consom_ut.nom_consommable}}</td>
+                                    <td>{{consom_ut.nombre}}</td>
+                                    <td>{{consom_ut.charges}}</td>
+                                    <td>{{consom_ut.fnc}}</td>
+                                    <td>
+                                        <a href="/delete_consommable/{{consom_ut.id}}" title="Supprimer">
+                                            <button class="btn btn-danger btn-circle btn-sm"><i class="fas fa-archive"></i></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+                        <!-- Modal consommables-->
+                        <div class="modal fade" id="consommables" tabindex="-1" role="dialog"
+                            aria-labelledby="consommables" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Consommables utilisés</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/save_consommable">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-12">
+                                                    <label for="">Nom consommable</label>
+                                                    <select class="form-control" name="nom_consommable" required>
+                                                        <option>- - - Sélectionnez - - -</option>
+                                                        {% for consom in consommables %}
+                                                        <option value="{{consom.libelle}}">{{consom.libelle}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    
+                                                        <input type="hidden" name="patient" value="{{patient.id}}" />
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="">Nombre</label>
+                                                    <input type="number" class="form-control" name="nombre" min="0" required/>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="">sonde n° </label>
+                                                    <input type="text" class="form-control" name="sonde" required/>
+
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="">Chargés</label>
+                                                    <input type="text" class="form-control" name="charges" required/>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="">FNC </label>
+                                                    <input type="text" class="form-control" name="fnc" required/>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Fermer</button>
+                                                <input type="submit" class="btn btn-primary" value="Enregister" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end consommables-->
                         <!-- Modal voies aérienne-->
                         <div class="modal fade" id="voieArerienne" tabindex="-1" role="dialog"
                             aria-labelledby="voieArerienne" aria-hidden="true">

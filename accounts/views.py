@@ -18,6 +18,7 @@ def login_user(request):
             all_patients = Patient.objects.all()
             #patient_count = all_patients.count()
             context = {'patients': all_patients}
+            #return redirect('home', kwargs={ 'patients': all_patients })
             return render(request, 'home.html', context)
         
         else:

@@ -18,6 +18,7 @@ class Patient(models.Model):
   numero_ambulance = models.CharField(max_length=25, null = True)
   diagnostique_evoque = models.CharField(max_length=250, null = True)
   date_creation = models.DateTimeField(auto_now_add=True, null=True)
+  is_valid      = models.IntegerField(null = True)
   class Meta:
         db_table = 'Patient'
 
@@ -206,8 +207,19 @@ class Constant(models.Model):
     patient     = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
     class Meta:
         db_table = 'constant'
+    
+class Consommable_utilise(models.Model):
+    nom_consommable = models.CharField(max_length=50)
+    nombre          = models.CharField(max_length=5)
+    charges         = models.CharField(max_length=25)
+    fnc             = models.CharField(max_length=25)
+    patient         = models.ForeignKey(Patient, on_delete=models.CASCADE, null = True)
+    class Meta:
+        db_table = 'consommable_utilise'
 
-
-
+class Consommable(models.Model):
+    libelle = models.CharField(max_length=150)
+    class Meta:
+        db_table = 'consommable'
 
 

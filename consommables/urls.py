@@ -5,6 +5,7 @@ from . import views
 app_name = "consommable"
 
 urlpatterns = [
-    path('home/', views.get_consommable, name= 'home'),
-    path('addConsommable', views.addConsommable)
+    path('home/', views.get_consommable, name= "homeconsom"),
+    
+    path('delete_consommable/<id>/', views.delete_consommable, name="delete_consommable")
 ]

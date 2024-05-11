@@ -19,13 +19,14 @@
  <div class="modal-dialog" role="document">
      <div class="modal-content">
          <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Voie aérienne</h5>
+             <h5 class="modal-title" id="exampleModalLabel">+Ajouter consommable</h5>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
              </button>
          </div>
          <div class="modal-body">
-             <form method="post" action="/consommable/addConsommable">
+             <!--<form method="post" action="/consommable/addConsommable">-->
+                <form method="post" action="{%url 'addconsomm'%}">
                  {% csrf_token %}
                  <div class="form-row">
                      <div class="form-group col-md-12">
@@ -52,6 +53,9 @@
         <h6 class="m-0 font-weight-bold text-primary">Consommables</h6>
     </div>
     <div class="card-body">
+        {% if message_alert %}
+            <div class="alert alert-success"> {{message_alert}}</div>
+        {% endif %}
         <div class="table-responsive">
             
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6">
@@ -95,7 +99,12 @@
                     {% for cons in consommables %}
                     <tr>
                         <td>{{cons.libelle}}</td>
-                        <td> - - -</td>
+                        <td>
+                            <a href="/consommable/delete_consommable/{{cons.id}}" class="btn btn-danger btn-circle btn-sm"
+                                    title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                    <i class="fas fa-archive"></i>
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
