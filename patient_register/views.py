@@ -96,22 +96,20 @@ def save_horaire(request):
             duree = duree,
             patient = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant}
-    #return render(request, 'dossier.html', context)
+    
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+@login_required(login_url='login')
+def delete_horaire(request, id1, id2):
+    horaire = Horaires.objects.get(pk=id1)
+    horaire.delete()
+    return redirect("/dossier_patient/"+str(id2))
+
+@login_required(login_url='login')
+def delete_lesion(request, id1, id2):
+    lesion = lesions.objects.get(pk=id1)
+    lesion.delete()
+    return redirect("/dossier_patient/"+str(id2))
 
 @login_required(login_url='login')   
 def save_lesion(request):
@@ -149,22 +147,7 @@ def save_lesion(request):
             autre         = autre,
             patient       = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
+    
     return redirect("/dossier_patient/"+str(my_patient.id))
 
 @login_required(login_url='login')
@@ -176,23 +159,14 @@ def save_ouverture_yeux(request):
             score           = int(request.POST['score']),
             patient         = my_patient
         )
-    ouverture_yeux = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale    = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion         = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data   = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice    = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe    = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
+    
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+@login_required(login_url='login')
+def delete_ouverture_yeux(request, id1, id2):
+    ouverture_yeux = Ouverture_des_yeux.objects.get(pk=id1)
+    ouverture_yeux.delete()
+    return redirect("/dossier_patient/"+str(id2))
 
 @login_required(login_url='login')
 def  save_reponse_verbale(request):
@@ -203,23 +177,14 @@ def  save_reponse_verbale(request):
             score           = int(request.POST['score']),
             patient         = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
+    
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+@login_required(login_url='login')
+def delete_rep_verbale(request, id1, id2):
+    rep_verb = Reponses_verbale.objects.get(pk=id1)
+    rep_verb.delete()
+    return redirect("/dossier_patient/"+str(id2))
 
 @login_required(login_url='login')
 def save_reponse_motrice(request):
@@ -230,23 +195,15 @@ def save_reponse_motrice(request):
             score           = int(request.POST['score']),
             patient         = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
+    
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+@login_required(login_url='login')
+def delete_rep_motrice(request, id1, id2):
+    rep_mot = Reponses_motrice.objects.get(pk=id1)
+    rep_mot.delete()
+    return redirect("/dossier_patient/"+str(id2))
+
 
 @login_required(login_url='login')
 def save_mouvement(request):
@@ -258,74 +215,56 @@ def save_mouvement(request):
             mouvement_de_mi = request.POST['mouvement_mi'],
             patient = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
+    
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+@login_required(login_url='login')
+def delete_autre_signe(request, id1, id2):
+    autre_signe = autre_signe_de_vie.objects.get(pk=id1)
+    autre_signe.delete()
+    return redirect("/dossier_patient/"+str(id2))
 
 @login_required(login_url='login')
 def save_mise_condition(request):
     if request.method == 'POST':
         my_patient = Patient.objects.get(pk=request.POST['patient'])
-        scp     = request.POST.getlist('scope')
-        dy      = request.POST.getlist('dyn')
-        ox      = request.POST.getlist('oxy')
-        coq     = request.POST.getlist('coquille')
-        barq    = request.POST.getlist('barquette')
-        vvp     = request.POST.getlist('vvp_kt')
-        bd1     = request.POST.getlist('bd')
-        bg1     = request.POST.getlist('bg')
-        collier = request.POST.getlist('collier_cervical')
-        attel   = request.POST.getlist('attelles')
-        drain   = request.POST.getlist('drain_pleural')
+        scp     = request.POST['scope']
+        dy      = request.POST['dyn']
+        ox      = request.POST['oxy']
+        coq     = request.POST['coquille']
+        barq    = request.POST['barquette']
+        vvp     = request.POST['vvp_kt']
+        bd1     = request.POST['bd']
+        bg1     = request.POST['bg']
+        collier = request.POST['collier_cervical']
+        attel   = request.POST['attelles']
+        drain   = request.POST['drain_pleural']
         Mise_en_condition.objects.create(
-            scope               = scp[0],
-            dyn                 = dy[0],
-            oxy                 = ox[0],
-            coquille            = coq[0],
-            barquette           = barq[0],
-            vvp_kt              = vvp[0],
-            bd                  = bd1[0],
-            bg                  = bg1[0],
+            scope               = scp,
+            dyn                 = dy,
+            oxy                 = ox,
+            coquille            = coq,
+            barquette           = barq,
+            vvp_kt              = vvp,
+            bd                  = bd1,
+            bg                  = bg1,
             ktc                 = request.POST['ktc'],
             sonde_gast          = request.POST['sonde_gast'],
             sonde_vest          = request.POST['sonde_ves'],
-            collier_cervical    = collier[0],
-            attelles            = attel[0],
-            drain_pleural       = drain[0],
+            collier_cervical    = collier,
+            attelles            = attel,
+            drain_pleural       = drain,
             autre               = request.POST['autre'],
             patient             = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+@login_required(login_url='login')
+def delete_mise_condition(request, id1, id2):
+    conditions = Mise_en_condition.objects.get(pk=id1)
+    conditions.delete()
+    return redirect("/dossier_patient/"+str(id2))
+
 
 @login_required(login_url='login')
 def solute_drogue(request):
@@ -336,23 +275,13 @@ def solute_drogue(request):
         libelle = solute[0],
         patient = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+def delete_sol_drogue(request, id1, id2):
+    sol = Solutes_drogues.objects.get(pk=id1)
+    sol.delete()
+    return redirect("/dossier_patient/"+str(id2))
+
 
 @login_required(login_url='login')
 def voie_aerienne(request):
@@ -368,23 +297,15 @@ def voie_aerienne(request):
             peep        = request.POST['peep'],
             patient     = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
+   
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+@login_required(login_url='login')
+def delete_voie_aerienne(request, id1, id2):
+    va = Voies_aeriennes.objects.get(pk=id1)
+    va.delete()
+    return redirect("/dossier_patient/"+str(id2))
+
 
 @login_required(login_url='login')
 def save_constant(request):
@@ -404,24 +325,15 @@ def save_constant(request):
             commentaire = request.POST['commentaire'],
             patient     = my_patient
         )
-    ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-    rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-    lesion          = lesions.objects.filter(patient=request.POST['patient'])
-    horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-    rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-    autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-    mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-    voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-    drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-    constant        = Constant.objects.filter(patient=request.POST['patient'])
-    consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-    context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
     return redirect("/dossier_patient/"+str(my_patient.id))
 
+@login_required(login_url='login')
+def delete_constant(request, id1, id2):
+    constant = Constant.objects.get(pk=id1)
+    constant.delete()
+    return redirect("/dossier_patient/"+str(id2))
+
+@login_required(login_url='login')
 def save_consomm_utilise(request):
     if request.method == 'POST':
         my_patient = Patient.objects.get(pk=request.POST['patient'])
@@ -432,23 +344,12 @@ def save_consomm_utilise(request):
             fnc             = request.POST['fnc'],
             patient         = my_patient
         )
-        ouverture_yeux  = Ouverture_des_yeux.objects.filter(patient=request.POST['patient'])
-        rep_verbale     = Reponses_verbale.objects.filter(patient=request.POST['patient'])
-        lesion          = lesions.objects.filter(patient=request.POST['patient'])
-        horaire_data    = Horaires.objects.filter(patient=request.POST['patient'])
-        rep_motrice     = Reponses_motrice.objects.filter(patient=request.POST['patient'])
-        autre_signe     = autre_signe_de_vie.objects.filter(patient=request.POST['patient'])
-        mise_condition  = Mise_en_condition.objects.filter(patient=request.POST['patient'])
-        voies           = Voies_aeriennes.objects.filter(patient=request.POST['patient'])
-        drogue          = Solutes_drogues.objects.filter(patient=request.POST['patient'])
-        constant        = Constant.objects.filter(patient=request.POST['patient'])
-        consommables_utilises        = Consommable_utilise.objects.filter(patient=request.POST['patient'])
-        context = {'patient': my_patient, 'horaires' : horaire_data, 'list_lesion': lesion,
-               'ouverture_des_yeux': ouverture_yeux, 'reponses_verbale': rep_verbale, 
-               'reponses_mot': rep_motrice, 'autres_signe': autre_signe, 'mise_en_cond': mise_condition,
-               'voies_aerien': voies, 'solute_drogue': drogue, 'my_constants': constant, 'consommables_utilises': consommables_utilises}
-    #return render(request, 'dossier.html', context)
     return redirect("/dossier_patient/"+str(my_patient.id))
+
+def del_consommable_utilise(request, id1, id2):
+    const_ut = Consommable_utilise.objects.get(pk=id1)
+    const_ut.delete()
+    return redirect("/dossier_patient/"+str(id2))
 
 def logout(request):
     return render(request, 'index.html')

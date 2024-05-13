@@ -126,9 +126,9 @@
                                 <td>{{horaire.a_base}}</td>
                                 <td>{{horaire.duree}}</td>
                                 <td>
-                                    <a href="/archive/{{horaire.id}}" class="btn btn-danger btn-circle btn-sm"
-                                        title="Archiver">
-                                        <i class="fas fa-archive"></i>
+                                    <a href="/delete_horaire/{{horaire.id}}/{{patient.id}}" class="btn btn-danger btn-circle btn-sm"
+                                        title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                        <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -172,9 +172,9 @@
                                 <td>{{les.mid}}</td>
                                 <td>{{les.mig}}</td>
                                 <td>
-                                    <a href="/archive/{{les.id}}" class="btn btn-danger btn-circle btn-sm"
-                                        title="Archiver">
-                                        <i class="fas fa-archive"></i>
+                                    <a href="/delete_lesion/{{les.id}}/{{patient.id}}" class="btn btn-danger btn-circle btn-sm"
+                                        title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                        <i class="fas fa-trash"></i>
                                 </td>
                             </tr>
                             {% endfor%}
@@ -218,11 +218,11 @@
 
                         <table class="table">
                             <legend>
-                                <h6>Ouverture des yeux</h6>
+                                <h6 class="alert alert-warning"><b>Ouverture des yeux</b></h6>
                             </legend>
                             <tr>
                                 <th>Libelle</th>
-                                <th>Score</th>
+                                <th width="900px">Score</th>
                                 <th>Action</th>
                             </tr>
 
@@ -230,7 +230,12 @@
                             <tr>
                                 <td>{{ouvert.libelle}}</td>
                                 <td>{{ouvert.score}}</td>
-                                <td> - - -</td>
+                                <td> 
+                                    <a href="/delete_ouverture_yeux/{{ouvert.id}}/{{patient.id}}" class="btn btn-danger btn-circle btn-sm"
+                                        title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
 
@@ -238,11 +243,11 @@
 
                         <table class="table">
                             <legend>
-                                <h6>Réponse verbale</h6>
+                                <h6 class="alert alert-warning"><b>Réponse verbale</b></h6>
                             </legend>
                             <tr>
-                                <th>Libelle</th>
-                                <th>Score</th>
+                                <th width="260px">Libelle</th>
+                                <th width="900px">Score</th>
                                 <th>Action</th>
                             </tr>
 
@@ -250,18 +255,24 @@
                             <tr>
                                 <td>{{rep_verb.libelle}}</td>
                                 <td>{{rep_verb.score}}</td>
-                                <td> - - -</td>
+                                <td> 
+                                    <a href="/delete_rep_verb/{{rep_verb.id}}/{{patient.id}}" class="btn btn-danger btn-circle btn-sm"
+                                        title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+
+                                </td>
                             </tr>
                             {% endfor %}
                         </table>
 
                         <table class="table">
                             <legend>
-                                <h6>Réponse motrice</h6>
+                                <h6 class="alert alert-warning"><b>Réponse motrice</b></h6>
                             </legend>
                             <tr>
-                                <th>Libelle</th>
-                                <th>Score</th>
+                                <th width="260px">Libelle</th>
+                                <th width="900px">Score</th>
                                 <th>Action</th>
                             </tr>
 
@@ -269,14 +280,19 @@
                             <tr>
                                 <td>{{rep_mot.libelle}}</td>
                                 <td>{{rep_mot.score}}</td>
-                                <td> - - -</td>
+                                <td>
+                                    <a href="/delete_rep_motrice/{{rep_mot.id}}/{{patient.id}}" class="btn btn-danger btn-circle btn-sm"
+                                    title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                    <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
                         </table>
 
                         <table class="table">
                             <legend>
-                                <h6>Autre signe </h6>
+                                <h6 class="alert alert-warning"><b>Autre signe </b></h6>
                             </legend>
                             <tr>
                                 <th>Formillement extrémités</th>
@@ -290,7 +306,12 @@
                                 <td>{{aut_signe.fourmillement_extremite}}</td>
                                 <td>{{aut_signe.mouvement_de_ms}}</td>
                                 <td>{{aut_signe.mouvement_de_mi}}</td>
-                                <td> - - -</td>
+                                <td>
+                                    <a href="/delete_autre_signe/{{aut_signe.id}}/{{patient.id}}" class="btn btn-danger btn-circle btn-sm"
+                                    title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                    <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
                         </table>
@@ -338,6 +359,12 @@
                                 <td>{{cond.attelles}}</td>
                                 <td>{{cond.drain_pleural}}</td>
                                 <td>{{cond.autre}}</td>
+                                <td>
+                                    <a href="/mise_condition/{{cond.id}}/{{patient.id}}" class="btn btn-danger btn-circle btn-sm"
+                                    title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                    <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
 
                             {% endfor %}
@@ -375,9 +402,9 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a href="/archive/{{sol.id}}" class="btn btn-danger btn-circle btn-sm"
-                                        title="Archiver">
-                                        <i class="fas fa-archive"></i>
+                                    <a href="/delete_sol_drogue/{{sol.id}}/{{patient.id}}" onclick="return confirm('Voulez-vous supprimer ?');" class="btn btn-danger btn-circle btn-sm"
+                                        title="trashr">
+                                        <i class="fas fa-trash"></i>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -448,9 +475,12 @@
                                 <td>{{voie.frequence}}</td>
                                 <td>{{voie.vol_courant}}</td>
                                 <td>{{voie.peep}}</td>
-                                <td><a href="/archive/{{voie.id}}" class="btn btn-danger btn-circle btn-sm"
-                                    title="Archiver">
-                                    <i class="fas fa-archive"></i></td>
+                                <td>
+                                    <a href="/delete_voie_aerienne/{{voie.id}}/{{patient.id}}" onclick="return confirm('Voulez-vous supprimer ?');" class="btn btn-danger btn-circle btn-sm"
+                                        title="trashr">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
                         </table>
@@ -487,9 +517,12 @@
                                 <td>{{const.glycemie}}</td>
                                 <td>{{const.douleur}}</td>
                                 <td>{{const.diurese}}</td>
-                                <td><a href="/archive/{{const.id}}" class="btn btn-danger btn-circle btn-sm"
-                                    title="Archiver">
-                                    <i class="fas fa-archive"></i></td>
+                                <td>
+                                    <a href="/delete_constant/{{const.id}}/{{patient.id}}" onclick="return confirm('Voulez-vous supprimer ?');" class="btn btn-danger btn-circle btn-sm"
+                                        title="trashr">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
                         </table>
@@ -515,8 +548,8 @@
                                     <td>{{consom_ut.charges}}</td>
                                     <td>{{consom_ut.fnc}}</td>
                                     <td>
-                                        <a href="/delete_consommable/{{consom_ut.id}}" title="Supprimer">
-                                            <button class="btn btn-danger btn-circle btn-sm"><i class="fas fa-archive"></i></button>
+                                        <a href="/del_consommable_utilise/{{consom_ut.id}}/{{patient.id}}" onclick="return confirm('Voulez-vous supprimer ?');" title="Supprimer">
+                                            <button class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></button>
                                         </a>
                                     </td>
                                 </tr>

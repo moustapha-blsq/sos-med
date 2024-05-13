@@ -26,4 +26,15 @@ urlpatterns = [
     path('consommable/', include('consommables.urls')),
     path('save_consommable', save_consomm_utilise),
     path('addConsommable/', addConsommable, name="addconsomm"),
+    path('delete_horaire/<id1>/<id2>/', delete_horaire, name="delete_horaire"),
+    path('delete_lesion/<id1>/<id2>/', delete_lesion, name="delete_lesion"),
+    path('delete_ouverture_yeux/<id1>/<id2>/', delete_ouverture_yeux, name="delete_lesion"),
+    path('delete_rep_verb/<id1>/<id2>/', delete_rep_verbale, name="delete_rep_verb"),
+    path('delete_rep_motrice/<id1>/<id2>/', delete_rep_motrice, name="delete_rep_motrice"),
+    path('delete_autre_signe/<id1>/<id2>/', delete_autre_signe, name="delete_rep_motrice"),
+    path('mise_condition/<id1>/<id2>/', delete_mise_condition, name="delete_mise_condition"),
+    path('delete_sol_drogue/<id1>/<id2>/', delete_sol_drogue, name="delete_solute_drogue"),
+    path('delete_voie_aerienne/<id1>/<id2>/', delete_voie_aerienne, name="delete_voie_aerienne"),
+    path('delete_constant/<id1>/<id2>/', delete_constant, name="delete_constant"),
+    path('del_consommable_utilise/<id1>/<id2>/', del_consommable_utilise, name="del_consommable_utilise")
 ]
