@@ -1,0 +1,182 @@
+{%extends 'main.html'%}
+{%load static%}
+
+{%block content%}
+{% include 'base/header.html' %}
+ <!-- Begin Page Content -->
+ <div class="container-fluid">
+  <div align="right">
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+    data-target="#addPersonnel">
+    <i class="fas fa-plus"></i> Ajouter
+</button>
+</div>
+<br/>
+
+ <!-- Modal ajout consommabless-->
+ <div class="modal fade" id="addPersonnel" tabindex="-1" role="dialog"
+ aria-labelledby="voieArerienne" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <div class="alert alert-warning"><h5 class="modal-title" id="exampleModalLabel">+Nouveau personnel</h5></div>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+         <div class="modal-body">
+             <!--<form method="post" action="/consommable/addConsommable">-->
+                <form method="post" action="{%url 'addpersonnel'%}">
+                 {% csrf_token %}
+                 <div class="form-row">
+                     <div class="form-group col-md-12">
+                         <label for="">Matricule</label>
+                         <input type="text" class="form-control" name="matricule" required/>
+                     </div>
+                     <div class="form-group col-md-12">
+                        <label for="">Prénom</label>
+                        <input type="text" class="form-control" name="prenom" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Nom</label>
+                        <input type="text" class="form-control" name="nom" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Spécialité</label>
+                        <input type="text" class="form-control" name="specialite" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Téléphone</label>
+                        <input type="text" class="form-control" name="tel" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Adresse</label>
+                        <input type="text" class="form-control" name="adresse" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" name="email" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Service</label>
+                        <input type="text" class="form-control" name="service" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Année de recrutement</label>
+                        <input type="text" class="form-control" name="annee_recrut" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Diplôme</label>
+                        <input type="text" class="form-control" name="diplome" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Grade</label>
+                        <input type="text" class="form-control" name="grade" required/>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Commentaire</label>
+                        <textarea class="form-control" name="commentaire" rows="5"></textarea>
+                    </div>
+                 </div>
+
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary"
+                         data-dismiss="modal">Fermer</button>
+                     <input type="submit" class="btn btn-primary" value="Enregister" />
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
+</div>
+<!--end modal consommables-->
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Personnel</h6>
+    </div>
+    <div class="card-body">
+        {% if message_alert %}
+            <div class="alert alert-success"> {{message_alert}}</div>
+        {% endif %}
+        <div class="table-responsive">
+            
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select> entries
+                </label>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div id="dataTable_filter" class="dataTables_filter">
+                    <label>Search:
+                        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                    <tr role="row">
+                        
+                        <!--<th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                        colspan="1" aria-label="Position: activate to sort column ascending" style="width: 361px;">Libellé</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Office: activate to sort column ascending" style="width: 49px;">Action</th>
+                        -->
+                        <th>Matricule </th>
+                        <th>Nom</th> 
+                        <th>Prénom</th>
+                        <th>Spécialite</th> 
+                        <th>Téléphone</th>
+                        <th>Service</th>
+                        <th>Action</th>
+                        
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    
+                    <th>Matricule </th>
+                    <th>Nom</th> 
+                    <th>Prénom</th>
+                    <th>Spécialite</th> 
+                    <th>Téléphone</th>
+                    <th>Service</th>
+                    <th>Action</th>
+                </tfoot>
+                <tbody>
+                    {% for perso in personnels %}
+                    <tr>
+                        <td>{{perso.matricule}}</td>
+                        <td>{{perso.nom}}</td>
+                        <td>{{perso.prenom}}</td>
+                        <td>{{perso.specialite}}</td>
+                        <td>{{perso.telephone}}</td>
+                        <td>{{perso.service}}</td>
+                        <td>
+                            <a href="/consommable/delete_consommable/{{cons.id}}" class="btn btn-danger btn-circle btn-sm"
+                                    title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                                    <i class="fas fa-archive"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'base/footer.html' %}
+
+{%endblock%}
+
+ 

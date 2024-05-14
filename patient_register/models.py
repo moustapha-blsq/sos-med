@@ -223,3 +223,22 @@ class Consommable(models.Model):
         db_table = 'consommable'
 
 
+class Personnel(models.Model):
+    matricule           = models.CharField(max_length=20)
+    nom                 = models.CharField(max_length=150)
+    prenom              = models.CharField(max_length=150)
+    specialite          = models.CharField(max_length=150)
+    telephone           = models.CharField(max_length=50)
+    adresse             = models.CharField(max_length=150)
+    email               = models.CharField(max_length=150)
+    service             = models.CharField(max_length=100)
+    annee_recrutement   = models.CharField(max_length=10)
+    diplome_obtenu      = models.CharField(max_length=150)
+    grade               = models.CharField(max_length=50, null=True)
+    commentaire         = models.CharField(max_length=150, null=True)
+    perso_valid         = models.CharField(max_length=3, default='1')
+    class Meta:
+        db_table = 'Personnel'
+    
+
+

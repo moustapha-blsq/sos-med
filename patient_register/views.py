@@ -351,6 +351,31 @@ def del_consommable_utilise(request, id1, id2):
     const_ut.delete()
     return redirect("/dossier_patient/"+str(id2))
 
+def list_personnel(request):
+    all_personnel = Personnel.objects.all()
+    context = {'personnels': all_personnel}
+    return render(request, 'personnel.html', context)
+
+def save_personnel(request):
+    if request.method == 'POST':
+        Personnel.objects.create(
+            matricule           = request.POST['matricule'],
+            nom                 = request.POST['nom'],
+            prenom              = request.POST['prenom'],
+            telephone           = request.POST['tel'],
+            specialite          = request.POST['specialite'],
+            adresse             = request.POST['adresse'],
+            email               = request.POST['email'],
+            service             = request.POST['service'],
+            annee_recrutement   = request.POST['annee_recrut'],
+            diplome_obtenu      = request.POST['diplome'],
+            grade               = request.POST['grade'],
+            commentaire         = request.POST['commentaire'],
+            #is_valid            = 1
+
+        )
+    return redirect("personnel")
+
 def logout(request):
     return render(request, 'index.html')
 
