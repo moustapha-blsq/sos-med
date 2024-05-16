@@ -5,107 +5,70 @@
 {% include 'base/header.html' %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    <div align="right">
+        <a href="/home" class="btn btn-primary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-list"></i>
+            </span>
+            <span class="text">Liste patients</span>
+        </a>
+    </div>
     <div class="">
         <div class="p-5">
+            
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">+Nouveau patient</h6>
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-edit"></i> Editer patient</h6>
                 </div>
                 <div class="card-body">
-                    <!--<form method="post" action="/save_patient" class="user" >
-                {% csrf_token %}
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input type="text" name="nom" class="form-control" id="exampleFirstName" placeholder="nom" required>
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="text" name="prenom" class="form-control" id="exampleLastName" placeholder="Prénom" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <select name="sexe" class="form-control" id="" required>
-                            <option>- - - Sexe - - -</option>
-                            <option value="M">Masculin</option>
-                            <option value="F">Féminin</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="number" min="0" name="age" class="form-control" id="" placeholder="Age">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12">
-                        <input type="text" name="adresse" class="form-control" id="" placeholder="Adresse" required />
-                    </div>
                     
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" name="telephone" class="form-control" id="" placeholder="Telephone" required>
-                    </div>
-                    <div class="col-sm-6">
-
-                        <select name="pays_origine" class="form-control" id="" required>
-                            <option>- - - Pays d'origine - - -</option>
-                            <option value="Sénégal">Sénégal</option>
-                            <option value="Magreb">Magreb</option>
-                            <option value="Moyen Orient">Moyen Orient</option>
-                            <option value="Europe">Europe</option>
-                            <option value="Amérique">Amérique</option>
-                            <option value="Océanie">Océanie</option>
-                            <option value="Asie">Asie</option>
-                            <option value="Autre">Autre</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <br/>
-                    <div class="col-sm-12 mb-3 mb-sm-0"></div>
-                        <input type="hidden" name="csrfmiddlewaretoken" value="pHK2CZzBB323BM2Nq7DE2sxnQoBG1jPl" disabled="">
-                        <input type="submit" class="btn btn-primary btn-block" value="Enregister"/>
-                    </div>
-                </div>
-                
-        </div>
-    </form>-->
+                    
                     <font size="2px">
-                        <form method="post" action="/save_patient">
+                        <form method="post" action="/edit_patient">
                             {% csrf_token %}
                             <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail4">Statut (staut actuel du dossier : <span class="btn btn-warning">{{patient.statut}}</span></label>
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="statut">
+                                        <option>Choisir...</option>
+                                        <option value="Admis">Admis</option>
+                                        <option value="En cours">En cours</option>
+                                        <option value="Traité">Traité</option>
+                                    </select>
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Nom</label>
-                                    <input type="text" class="form-control" name="nom" id="inputEmail4"
+                                    <input type="text" class="form-control" name="nom" value="{{patient.nom}}" id="inputEmail4"
                                         placeholder="Nom patient">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Prénom</label>
-                                    <input type="text" name="prenom" class="form-control" id="inputPassword4"
+                                    <input type="text" name="prenom" value="{{patient.prenom}}" class="form-control" id="inputPassword4"
                                         placeholder="Prénom patient">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Sexe</label>
                                     <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="sexe">
-                                        <option selected>Choisir...</option>
+                                        <option>Choisir...</option>
                                         <option value="M">Masculin</option>
                                         <option value="F">Féminin</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Age</label>
-                                    <input type="number" name="age" class="form-control" id="inputPassword4"
+                                    <input type="number" name="age" value="{{patient.age}}" class="form-control" id="inputPassword4"
                                         placeholder="Age (en année)" min="0">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Addresse</label>
-                                <input type="text" class="form-control" name="adresse" id="inputAddress"
+                                <input type="text" class="form-control" value="{{patient.adresse}}" name="adresse" id="inputAddress"
                                     placeholder="Adresse exacte">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Telephone</label>
-                                    <input type="text" class="form-control" id="inputCity" name="telephone"
+                                    <input type="text" class="form-control" value="{{patient.telephone}}" id="inputCity" name="telephone"
                                         placeholder="N° de téléphone">
                                 </div>
                                 <div class="form-group col-md-6">
@@ -138,14 +101,14 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Origine de l'appel</label>
-                                    <input type="text" class="form-control" id="inputCity" name="origine_appel"
+                                    <input type="text" class="form-control" value="{{patient.origine_appel}}" id="inputCity" name="origine_appel"
                                         placeholder="origine_appel" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Motif de l'appel</label>
-                                    <input type="text" class="form-control" id="inputCity" name="motif_appel"
+                                    <input type="text" class="form-control" value="{{patient.motif_appel}}" id="inputCity" name="motif_appel"
                                         placeholder="Motif de l'appel" required>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -187,23 +150,24 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Trajet</label>
-                                    <input type="text" class="form-control" id="inputCity" name="trajet"
+                                    <input type="text" class="form-control" value="{{patient.trajet}}" id="inputCity" name="trajet"
                                         placeholder="Trajet transport" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputCity">Ambulance n°</label>
-                                    <input type="text" class="form-control" id="inputCity" name="numero_ambulance"
-                                        placeholder="N° ambulance" required>
+                                    <input type="text" class="form-control" id="inputCity" value="{{patient.numero_ambulance}}" name="numero_ambulance"
+                                        placeholder="Ambulance n°" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputAddress">Diagnostic évoqué</label>
                                 <textarea class="form-control" id="inlineFormCustomSelect" name="diagnostic_evoque"
-                                    rows="5" required placeholder="Expliqez les diagnostics évoqués..."></textarea>
+                                    rows="5" placeholder="{{patient.diagnostique_evoque}}" value="{{patient.diagnostique_evoque}}"></textarea>
+                                <input type="hidden" name="patient_id" value="{{patient.id}}"/>
                             </div>
 
                             <div class="alert alert-secondary" role="alert">
-                                <button type="submit" class="btn btn-primary">Enregistrer patient</button>
+                                <button type="submit" class="btn btn-primary">Enregistrer modifications</button>
                             </div>
 
                         </form>

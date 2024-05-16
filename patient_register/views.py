@@ -10,7 +10,6 @@ def login(request,*args, **kwargs):
 
 @login_required(login_url='login')
 def home(request,*args, **kwargs):
-    template = loader.get_template('home.html')
     all_patients = Patient.objects.all()
     # Création de dictionnaire
     #patient_count = all_patients.count()
@@ -20,8 +19,9 @@ def home(request,*args, **kwargs):
 
 @login_required(login_url='login')
 def add_patient(request,*args, **kwargs):
-    template = loader.get_template('add_patient.html')
-    return HttpResponse(template.render())
+    personnels = Personnel.objects.all()
+    context = {'personnels': personnels}
+    return render(request, 'add_patient.html', context)
 
 @login_required(login_url='login')
 def save(request):
@@ -40,10 +40,11 @@ def save(request):
         decision = request.POST['decision']
         trajet = request.POST['trajet']
         numero_ambu = request.POST['numero_ambulance']
+        statut = "Traité"
         diagnostic_evoq = request.POST['diagnostic_evoque']
-        patient = Patient.objects.create(prenom=prenom, nom=nom, age=age, sexe=sexe, adresse=adress, 
+        Patient.objects.create(prenom=prenom, nom=nom, age=age, sexe=sexe, adresse=adress, 
                                          telephone=telephone, pays_origine=pays_origine, ambulancier=ambulancier,
-                                         origine_appel=origine_appel, motif_appel=motif_appel, lieu_intervention=lieu_intervention,
+                                         origine_appel=origine_appel, statut = statut, motif_appel=motif_appel, lieu_intervention=lieu_intervention,
                                          decision=decision, trajet=trajet, numero_ambulance=numero_ambu, diagnostique_evoque=diagnostic_evoq)
     all_patients = Patient.objects.all()
     context = {'patients': all_patients}
@@ -375,6 +376,41 @@ def save_personnel(request):
 
         )
     return redirect("personnel")
+
+def edit_patient(request, id):
+    patient = Patient.objects.get(pk=id)
+    all_personnel = Personnel.objects.all()
+    context = {'patient' : patient, 'personnels': all_personnel}
+    return render(request, 'edit_patient.html', context)
+
+def update_patient(request):
+    if request.method == 'POST':
+        my_patient = Patient.objects.get(pk=request.POST['patient_id'])
+        my_patient.nom          = request.POST['nom']
+        my_patient.prenom       = request.POST['prenom']
+        if request.POST['sexe'] != "Choisir...":
+            my_patient.sexe     = request.POST['sexe']
+        my_patient.age          = request.POST['age']
+        my_patient.adresse      = request.POST['adresse']
+        my_patient.telephone    = request.POST['telephone']
+        if request.POST['pays_origine'] != "Choisir...":
+            my_patient.pays_origine = request.POST['pays_origine']
+        if request.POST['ambulancier'] != "Choisir...":
+            my_patient.ambulancier = request.POST['ambulancier']
+        my_patient.origine_appel   = request.POST['origine_appel']
+        my_patient.motif_appel     = request.POST['motif_appel']
+        if request.POST['lieu_intervention'] != "Choisir...":
+            my_patient.lieu_intervention = request.POST['lieu_intervention']
+        if request.POST['decision'] != "Choisir...":
+            my_patient.decision = request.POST['decision']
+        my_patient.trajet = request.POST['trajet']
+        my_patient.numero_ambu = request.POST['numero_ambulance']
+        if request.POST['statut'] != "Choisir...":
+            my_patient.statut = request.POST['statut']
+        #statut = "Traité"
+        diagnostic_evoq = request.POST['diagnostic_evoque']
+        my_patient.save()
+    return redirect("home")
 
 def logout(request):
     return render(request, 'index.html')

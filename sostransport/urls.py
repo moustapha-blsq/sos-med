@@ -38,5 +38,7 @@ urlpatterns = [
     path('delete_constant/<id1>/<id2>/', delete_constant, name="delete_constant"),
     path('del_consommable_utilise/<id1>/<id2>/', del_consommable_utilise, name="del_consommable_utilise"),
     path('personnel/', list_personnel, name="personnel"),
-    path('addpersonnel', save_personnel, name="addpersonnel")
+    path('addpersonnel', save_personnel, name="addpersonnel"),
+    path('edit/<id>/', edit_patient, name="edit_patient"),
+    path('edit_patient', update_patient, name="update_patient")
 ]

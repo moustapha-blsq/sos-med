@@ -6,7 +6,7 @@
  <!-- Begin Page Content -->
  <div class="container-fluid">
   <div align="right">
-      <a href="new_patient" class="btn btn-primary btn-icon-split">
+      <a href="/new_patient" class="btn btn-primary btn-icon-split">
           <span class="icon text-white-50">
               <i class="fas fa-user"></i>
           </span>
@@ -57,11 +57,13 @@
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                         aria-label="Start date: activate to sort column ascending" style="width: 68px;">Adresse</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-                        aria-label="Salary: activate to sort column ascending" style="width: 67px;">Telephone</th>
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Telephone</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-                        aria-label="Salary: activate to sort column ascending" style="width: 67px;">Pays d'origine</th>
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Pays d'origine</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-                        aria-label="Salary: activate to sort column ascending" style="width: 67px;">Actions</th>
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Statut</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Actions</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -77,11 +79,13 @@
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                         aria-label="Start date: activate to sort column ascending" style="width: 68px;">Adresse</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-                        aria-label="Salary: activate to sort column ascending" style="width: 67px;">Telephone</th>
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Telephone</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-                        aria-label="Salary: activate to sort column ascending" style="width: 67px;">Pays d'origine</th>
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Pays d'origine</th>
                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
-                        aria-label="Salary: activate to sort column ascending" style="width: 67px;">Actions</th>
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Statut</th>
+                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" 
+                        aria-label=": activate to sort column ascending" style="width: 67px;">Actions</th>
                 </tfoot>
                 <tbody>
                     {% for patient in patients %}
@@ -94,18 +98,29 @@
                                 <td>{{patient.telephone}}</td>
                                 <td>{{patient.pays_origine}}</td>
                                 <td>
+                                    {% if patient.statut == "En cours" %}
+                                        <button class="btn btn-warning">{{patient.statut}}</button>
+                                    {% endif %}
+                                    {% if patient.statut == "Admis" %}
+                                        <button class="btn btn-danger">{{patient.statut}}</button>
+                                    {% endif %}
+                                    {% if patient.statut == "Traité" %}
+                                        <button class="btn btn-success">{{patient.statut}}</button>
+                                    {% endif %}
+                                </td>
+                                <td>
                                     <a href="/dossier_patient/{{patient.id}}" class="btn btn-primary btn-circle btn-sm" title="Dossier patient">
                                             <i class="fas fa-folder"></i>
                                     </a>
-                                    <a href="/edit/{{patient.id}}" class="btn btn-success btn-circle btn-sm" title="Editer">
+                                    <a href="/edit/{{patient.id}}" class="btn btn-info btn-circle btn-sm" title="Editer">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="/archive/{{patient.id}}" class="btn btn-danger btn-circle btn-sm" title="Archiver">
+                                    <a href="/archive/{{patient.id}}" class="btn btn-warning btn-circle btn-sm" title="Archiver">
                                         <i class="fas fa-archive"></i>
                                     </a>
                                     
                                 </td>
-                            </tr>            
+                            </tr> 
                     {% endfor %}
                 </tbody>
             </table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>

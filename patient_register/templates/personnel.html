@@ -161,8 +161,16 @@
                         <td>{{perso.telephone}}</td>
                         <td>{{perso.service}}</td>
                         <td>
-                            <a href="/consommable/delete_consommable/{{cons.id}}" class="btn btn-danger btn-circle btn-sm"
-                                    title="Supprimer" onclick="return confirm('Voulez-vous supprimer ?');">
+                            <a href="/show_perso/{{perso.id}}" class="btn btn-primary btn-circle btn-sm"
+                                    title="Voir + de détails">
+                                    <i class="fas fa-folder"></i>
+                            </a>
+                            <a href="/edit_perso/{{perso.id}}" class="btn btn-info btn-circle btn-sm"
+                                    title="Editer">
+                                    <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="/archive_perso/{{perso.id}}" class="btn btn-warning btn-circle btn-sm"
+                                    title="Archiver" onclick="return confirm('Voulez-vous supprimer ?');">
                                     <i class="fas fa-archive"></i>
                             </a>
                         </td>
