@@ -278,6 +278,7 @@ def solute_drogue(request):
         )
     return redirect("/dossier_patient/"+str(my_patient.id))
 
+@login_required(login_url='login')
 def delete_sol_drogue(request, id1, id2):
     sol = Solutes_drogues.objects.get(pk=id1)
     sol.delete()
@@ -347,16 +348,19 @@ def save_consomm_utilise(request):
         )
     return redirect("/dossier_patient/"+str(my_patient.id))
 
+@login_required(login_url='login')
 def del_consommable_utilise(request, id1, id2):
     const_ut = Consommable_utilise.objects.get(pk=id1)
     const_ut.delete()
     return redirect("/dossier_patient/"+str(id2))
 
+@login_required(login_url='login')
 def list_personnel(request):
     all_personnel = Personnel.objects.all()
     context = {'personnels': all_personnel}
     return render(request, 'personnel.html', context)
 
+@login_required(login_url='login')
 def save_personnel(request):
     if request.method == 'POST':
         Personnel.objects.create(
@@ -377,12 +381,14 @@ def save_personnel(request):
         )
     return redirect("personnel")
 
+@login_required(login_url='login')
 def edit_patient(request, id):
     patient = Patient.objects.get(pk=id)
     all_personnel = Personnel.objects.all()
     context = {'patient' : patient, 'personnels': all_personnel}
     return render(request, 'edit_patient.html', context)
 
+@login_required(login_url='login')
 def update_patient(request):
     if request.method == 'POST':
         my_patient = Patient.objects.get(pk=request.POST['patient_id'])
