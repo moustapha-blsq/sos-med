@@ -85,15 +85,27 @@ WSGI_APPLICATION = 'sostransport.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "sos_medecin",
-        "USER": "postgres",
-        "PASSWORD": "",
-        "DATABASE": "sos_medecin",
-        "HOST": "127.0.0.1",
+        "NAME": "dei6j7n03r1ubi",
+        "USER": "tfagmwsoiwbark",
+        "PASSWORD": "ceb466ddeb1b8fd8f605101d5fbafe67327de4e02d7fa37c17cd574560bb28f8",
+        "DATABASE": "dei6j7n03r1ubi",
+        "HOST": "ec2-44-215-176-210.compute-1.amazonaws.com",
         "PORT": "5432",
     }
 }
 
+
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.postgresql",
+#        "NAME": "sos_medecin",
+#        "USER": "postgres",
+#        "PASSWORD": "",
+#        "DATABASE": "sos_medecin",
+#        "HOST": "127.0.0.1",
+#        "PORT": "5432",
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
