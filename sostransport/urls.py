@@ -21,7 +21,7 @@ urlpatterns = [
     path('solute_drogue', solute_drogue),
     path('voie_aerienne', voie_aerienne),
     path('save_constant', save_constant),
-    path('logout', logout),
+    path('logout', logout_view),
     path('accounts/', include('accounts.urls')),
     path('consommable/', include('consommables.urls')),
     path('save_consommable', save_consomm_utilise),

@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'sostransport.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "dei6j7n03r1ubi",
@@ -93,19 +93,19 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+"""
 
-
-#DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.postgresql",
-#        "NAME": "sos_medecin",
-#        "USER": "postgres",
-#        "PASSWORD": "",
-#        "DATABASE": "sos_medecin",
-#        "HOST": "127.0.0.1",
-#        "PORT": "5432",
-#    }
-#or}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "sos_medecin",
+        "USER": "postgres",
+        "PASSWORD": "",
+        "DATABASE": "sos_medecin",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -147,6 +147,6 @@ USE_L10N = True
 STATIC_URL = '/staticfiles/'
 #STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_ROOT = os.path.join(BASE_DIR,  'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'staticfiles'), )
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'statics'), )
 
 django_heroku.settings(locals())

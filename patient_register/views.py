@@ -4,6 +4,7 @@ from django.template import loader
 from patient_register.models import *
 from consommables.models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 def login(request,*args, **kwargs):
     return render(request, 'index.html')
@@ -418,8 +419,9 @@ def update_patient(request):
         my_patient.save()
     return redirect("home")
 
-def logout(request):
-    return render(request, 'index.html')
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 
 
